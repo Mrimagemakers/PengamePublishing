@@ -9,7 +9,7 @@ export default function SeriesBanner() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://primary.jwwb.nl/public/k/z/d/temp-xhlldcgrnxoqlkcsjxbo/copy-of-copy-of-untitled-design-presentation-standard.png"
+          src="/images/bright-minds-explorers-series.webp" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://primary.jwwb.nl/public/k/z/d/temp-xhlldcgrnxoqlkcsjxbo/copy-of-copy-of-untitled-design-presentation-standard.png"; }}
           alt="Bright Minds Explorers series"
           className="w-full h-full object-cover"
         />
