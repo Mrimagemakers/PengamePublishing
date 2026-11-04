@@ -15,12 +15,12 @@ export const BOOKS = [
   // ── Bright Minds Explorers ───────────────────────────────────────────────────
   {
     id: "nia-number-garden",
-    title: "Nia and the Number Garden",
+    title: "Nia and the Number Garden: Deluxe Edition",
     series: "Bright Minds Explorers",
     description: "An enchanting STEM-forward children's book. Nia follows a glowing butterfly into a magical Number Garden where glowing numbers float and math creatures talk.",
-    image: "https://pengamepublishing.myshopify.com/cdn/shop/files/Nia_the_Number_Garden.png?v=1748740547&width=533",
+    image: "/images/nia-number-garden-deluxe.webp",
     price: "$24.99",
-    badge: "Featured",
+    badge: "Deluxe Edition",
     category: "children",
     purchaseUrl: "https://pengamepublishing.myshopify.com/products/nia-and-the-number-garden",
   },
