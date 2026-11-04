@@ -1,10 +1,11 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
 
 // https://vite.dev/config/
 export default defineConfig({
   logLevel: 'error', // Suppress warnings, only show errors
-  base: './',
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [react()],
-  resolve: { alias: { '@': new URL('./src', import.meta.url).pathname } },
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
 });

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Star, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, Star, Check, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 

@@ -1,4 +1,14 @@
 export const BOOKS = [
+  {
+    id: 'nia-number-garden-deluxe',
+    title: 'Nia and the Number Garden: Deluxe Edition',
+    series: 'Bright Minds Explorers',
+    description: 'Return to Nia’s Number Garden with the Deluxe Edition by Darnell Clark. Discover the newest edition and its details on Amazon.',
+    image: `${import.meta.env?.BASE_URL || '/'}covers/nia-deluxe.jpg`,
+    badge: 'Deluxe Edition',
+    category: 'children',
+    purchaseUrl: 'https://www.amazon.com/dp/B0HKG8PCQC',
+  },
   // ── New / Featured ──────────────────────────────────────────────────────────
   {
     id: "changing-the-channel",

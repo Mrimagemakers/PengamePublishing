@@ -7,12 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Publications", path: "/publications" },
-  { label: "Big Book of Cookies", path: "/big-book-of-cookies" },
-  { label: "Leadership Academy", path: "/leadership-academy" },
-  { label: "Rap IQ City", href: "https://claude.ai/public/artifacts/192a190c-d963-4445-aeaa-8d6ec6945248", external: true },
-  { label: "StoryScape XR", href: "https://storyscapexr.com", external: true },
-  { label: "Turn Up Music", href: "https://turnupmusic.online", external: true },
-  { label: "Nia's Garden", href: "https://niasnumbergarden.shop", external: true },
+  { label: "Games", path: "/games" },
+  { label: "Book QR / AR", path: "/book-experiences" },
+  { label: "PG Leadership", path: "/leadership-academy" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -31,6 +28,12 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const close = (event) => { if (event.key === 'Escape') setMobileOpen(false); };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, []);
 
   return (
     <>
@@ -65,9 +68,9 @@ export default function Navbar() {
               <BookOpen className="w-5 h-5 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="font-heading text-xl font-bold text-foreground leading-none">
+              <span className="block font-heading text-xl font-bold text-foreground leading-none">
                 PenGame
-              </h1>
+              </span>
               <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-body">
                 Publishing
               </span>
@@ -75,7 +78,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden 2xl:flex items-center gap-1" aria-label="Main navigation">
             {NAV_LINKS.map((link) =>
               link.external ? (
                 <a
@@ -112,7 +115,10 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
+              className="2xl:hidden p-2 rounded-lg hover:bg-muted transition-colors"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -126,9 +132,9 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden overflow-hidden border-t border-border"
+              className="2xl:hidden overflow-hidden border-t border-border"
             >
-              <nav className="px-6 py-4 space-y-1 bg-card">
+              <nav id="mobile-navigation" aria-label="Mobile navigation" className="px-6 py-4 space-y-1 bg-card">
                 {NAV_LINKS.map((link) =>
                   link.external ? (
                     <a
