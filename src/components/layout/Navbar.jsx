@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Publications", path: "/publications" },
+  { label: "Shop", path: "/shop" },
+  { label: "AR / VR", path: "/experiences" },
+  { label: "Resources", path: "/resources" },
   { label: "Big Book of Cookies", path: "/big-book-of-cookies" },
   { label: "Leadership Academy", path: "/leadership-academy" },
   { label: "Rap IQ City", href: "https://claude.ai/public/artifacts/192a190c-d963-4445-aeaa-8d6ec6945248", external: true },
@@ -75,7 +78,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-0">
             {NAV_LINKS.map((link) =>
               link.external ? (
                 <a
@@ -83,7 +86,7 @@ export default function Navbar() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-lg text-sm font-body font-medium transition-all duration-200 text-foreground hover:bg-muted"
+                  className="px-2 py-2 rounded-lg text-xs font-body font-medium transition-all duration-200 text-foreground hover:bg-muted"
                 >
                   {link.label}
                 </a>
