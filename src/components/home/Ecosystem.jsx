@@ -4,7 +4,7 @@ import { ArrowUpRight, BookOpen, Headphones, Glasses, CarFront, Plane, Orbit, Ga
 const destinations = [
   { name: 'StoryScape XR', eyebrow: 'Immersive Reading', description: 'Enter virtual reading rooms and interactive storytelling worlds.', url: 'https://storyscapexr.com', icon: Glasses, image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=85', gradient: 'from-indigo-950/90 to-cyan-800/30' },
   { name: 'Turn Up Music VR', eyebrow: 'VR Music & Social', description: 'Explore the virtual radio station, music lounges and interactive entertainment.', url: 'https://turnupmusic.online', icon: Headphones, image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=900&q=85', gradient: 'from-purple-950/90 to-pink-800/30' },
-  { name: "Nia's Number Garden", eyebrow: 'Bright Minds Explorers', description: 'Discover the book, learning adventures and Nia’s connected virtual world.', url: 'https://niasnumbergarden.shop', icon: BookOpen, image: 'https://pengamepublishing.myshopify.com/cdn/shop/files/Nia_the_Number_Garden.png?v=1748740547&width=533', gradient: 'from-emerald-950/90 to-teal-800/30' },
+  { name: "Nia's Number Garden", eyebrow: 'Bright Minds Explorers', description: 'Launch Nia’s connected educational virtual world.', url: 'https://mrimagemakers.github.io/NiasVRWorld/', icon: BookOpen, image: 'https://pengamepublishing.myshopify.com/cdn/shop/files/Nia_the_Number_Garden.png?v=1748740547&width=533', gradient: 'from-emerald-950/90 to-teal-800/30' },
 ];
 
 const games = [
