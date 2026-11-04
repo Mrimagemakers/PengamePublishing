@@ -21,8 +21,8 @@ export default function FeaturedBook() {
             <div className="absolute -inset-4 bg-gradient-to-br from-secondary/20 to-primary/10 rounded-3xl blur-2xl" />
             <div className="relative bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12 flex justify-center">
               <img
-                src="https://pengamepublishing.myshopify.com/cdn/shop/files/nvrqqwn-front-shortedge-384.jpg?v=1774910216&width=533"
-                alt="Changing the Channel book cover"
+                src="https://pengamepublishing.myshopify.com/cdn/shop/files/Nia_the_Number_Garden.png?v=1748740547&width=533"
+                alt="Nia and the Number Garden original cover — Deluxe Edition artwork coming soon"
                 className="w-64 md:w-72 rounded-lg shadow-2xl hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -36,22 +36,22 @@ export default function FeaturedBook() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <Badge className="bg-secondary/10 text-secondary border-secondary/20 mb-4 font-body">
-              <Star className="w-3 h-3 mr-1" /> New Release
+              <Star className="w-3 h-3 mr-1" /> Featured Children’s Book
             </Badge>
 
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">
-              Changing the Channel
+              Nia and the Number Garden
             </h2>
             <p className="font-heading text-xl text-muted-foreground italic mb-6">
-              The 10 Golden Rules of Emotional Intelligence
+              Deluxe Edition
             </p>
 
             <p className="font-body text-muted-foreground leading-relaxed mb-6">
-              Emotional intelligence is no longer optional — it's a competitive advantage. This book explores how mastering your internal dialogue directly impacts leadership, decision-making, and long-term success.
+              Meet Nia and discover an imaginative STEM learning adventure where counting, problem-solving, and storytelling come together. The Deluxe Edition connects the book with interactive digital experiences.
             </p>
 
             <ul className="space-y-3 mb-8">
-              {["Improve self-awareness", "Lead with clarity and control", "Strengthen professional relationships", "Build a practical framework for growth"].map((item) => (
+              {["Discover counting and early math concepts", "Explore a magical learning garden", "Meet Nia and her Bright Minds friends", "Continue learning in Nia’s virtual world"].map((item) => (
                 <li key={item} className="flex items-start gap-3 font-body text-sm text-foreground">
                   <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                     <ArrowRight className="w-3 h-3 text-primary" />
@@ -61,19 +61,13 @@ export default function FeaturedBook() {
               ))}
             </ul>
 
-            <div className="flex items-center gap-4 mb-8">
-              <span className="font-heading text-3xl font-bold text-primary">$24.99</span>
-              <span className="font-body text-lg text-muted-foreground line-through">$29.99</span>
-              <Badge className="bg-destructive/10 text-destructive border-destructive/20 font-body">Sale</Badge>
-            </div>
-
-            <a
-              href="https://pengamepublishing.myshopify.com/products/changing-the-channel"
+            <p className="mb-6 text-sm text-muted-foreground">Deluxe Edition cover image will be added when the official artwork is supplied. The image shown is the original edition.</p>\n\n            <a
+              href="https://niasnumbergarden.shop"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Button size="lg" className="bg-primary hover:bg-primary/90 font-body font-semibold text-base px-8 h-12">
-                Order Now
+                Explore Nia Deluxe
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </a>
