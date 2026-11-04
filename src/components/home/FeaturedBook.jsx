@@ -61,13 +61,13 @@ export default function FeaturedBook() {
               ))}
             </ul>
 
-            \n\n            <a
-              href="https://niasnumbergarden.shop"
+            <a
+              href="https://mrimagemakers.github.io/NiasVRWorld/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Button size="lg" className="bg-primary hover:bg-primary/90 font-body font-semibold text-base px-8 h-12">
-                Explore Nia Deluxe
+                Launch Nia’s VR World
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </a>
