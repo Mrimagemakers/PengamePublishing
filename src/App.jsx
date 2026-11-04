@@ -12,6 +12,9 @@ import Contact from '@/pages/Contact';
 import Layout from '@/components/layout/Layout';
 import BigBookOfCookies from '@/pages/BigBookOfCookies';
 import LeadershipAcademy from '@/pages/LeadershipAcademy';
+import Shop from '@/pages/Shop';
+import Resources from '@/pages/Resources';
+import Experiences from '@/pages/Experiences';
 
 const AuthenticatedApp = () => {
   return (
@@ -19,6 +22,9 @@ const AuthenticatedApp = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/publications" element={<Publications />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/experiences" element={<Experiences />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/big-book-of-cookies" element={<BigBookOfCookies />} />
