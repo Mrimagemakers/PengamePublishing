@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, BookOpen, ChefHat, Star, ArrowRight } from "lucide-react";
+import { ExternalLink, BookOpen, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 

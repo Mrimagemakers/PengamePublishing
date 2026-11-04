@@ -12,12 +12,16 @@ import Contact from '@/pages/Contact';
 import Layout from '@/components/layout/Layout';
 import BigBookOfCookies from '@/pages/BigBookOfCookies';
 import LeadershipAcademy from '@/pages/LeadershipAcademy';
+import Games from '@/pages/Games';
+import BookExperiences from '@/pages/BookExperiences';
 
 const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/games" element={<Games />} />
+        <Route path="/book-experiences" element={<BookExperiences />} />
         <Route path="/publications" element={<Publications />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -32,7 +36,7 @@ const AuthenticatedApp = () => {
 function App() {
   return (
     <QueryClientProvider client={queryClientInstance}>
-        <Router basename={window.location.hostname.endsWith('github.io') ? '/PengamePublishing' : '/'}>
+        <Router basename={import.meta.env.BASE_URL}>
           <AuthenticatedApp />
         </Router>
         <Toaster />

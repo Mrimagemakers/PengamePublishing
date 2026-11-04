@@ -22,8 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm install --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
       - run: npm run build
+        env:
+          VITE_BASE_PATH: /PengamePublishing/
       - name: Support deep links on GitHub Pages
         run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5

@@ -1,5 +1,6 @@
 import React from "react";
-import HeroSection from "@/components/home/HeroSection";
+import ImmersiveGateway from "@/components/home/ImmersiveGateway";
+import Ventures from "@/components/home/Ventures";
 import FeaturedBook from "@/components/home/FeaturedBook";
 import BookShowcase from "@/components/home/BookShowcase";
 import SeriesBanner from "@/components/home/SeriesBanner";
@@ -11,7 +12,8 @@ import Ecosystem from "@/components/home/Ecosystem";
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <ImmersiveGateway />
+      <Ventures />
       <FeaturedBook />
       <SeriesBanner />
       <BookShowcase />
