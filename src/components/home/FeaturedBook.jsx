@@ -21,8 +21,8 @@ export default function FeaturedBook() {
             <div className="absolute -inset-4 bg-gradient-to-br from-secondary/20 to-primary/10 rounded-3xl blur-2xl" />
             <div className="relative bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12 flex justify-center">
               <img
-                src="https://pengamepublishing.myshopify.com/cdn/shop/files/Nia_the_Number_Garden.png?v=1748740547&width=533"
-                alt="Nia and the Number Garden original cover — Deluxe Edition artwork coming soon"
+                src="/images/nia-number-garden-deluxe.webp" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://pengamepublishing.myshopify.com/cdn/shop/files/Nia_the_Number_Garden.png?v=1748740547&width=533"; }}
+                alt="Nia and the Number Garden: Deluxe Edition official cover"
                 className="w-64 md:w-72 rounded-lg shadow-2xl hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -61,7 +61,7 @@ export default function FeaturedBook() {
               ))}
             </ul>
 
-            <p className="mb-6 text-sm text-muted-foreground">Deluxe Edition cover image will be added when the official artwork is supplied. The image shown is the original edition.</p>\n\n            <a
+            \n\n            <a
               href="https://niasnumbergarden.shop"
               target="_blank"
               rel="noopener noreferrer"
