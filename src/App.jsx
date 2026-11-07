@@ -14,7 +14,7 @@ import BigBookOfCookies from '@/pages/BigBookOfCookies';
 import LeadershipAcademy from '@/pages/LeadershipAcademy';
 import Shop from '@/pages/Shop';
 import Resources from '@/pages/Resources';
-import Experiences from '@/pages/Experiences';
+import Games from '@/pages/Games';
 
 const AuthenticatedApp = () => {
   return (
@@ -24,7 +24,8 @@ const AuthenticatedApp = () => {
         <Route path="/publications" element={<Publications />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/resources" element={<Resources />} />
-        <Route path="/experiences" element={<Experiences />} />
+        <Route path="/experiences" element={<Games />} />
+        <Route path="/games" element={<Games />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/big-book-of-cookies" element={<BigBookOfCookies />} />

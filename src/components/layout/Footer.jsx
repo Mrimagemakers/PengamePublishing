@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, MapPin, Phone, Mail, ArrowRight } from "lucide-react";
+import { GAMES } from "@/data/games";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
       <div className="border-b border-background/10">
         <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
               <Phone className="w-5 h-5 text-secondary" />
             </div>
             <div>
@@ -18,7 +19,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
               <Mail className="w-5 h-5 text-secondary" />
             </div>
             <div>
@@ -27,7 +28,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
               <MapPin className="w-5 h-5 text-secondary" />
             </div>
             <div>
@@ -36,7 +37,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
               <BookOpen className="w-5 h-5 text-secondary" />
             </div>
             <div>
@@ -52,14 +53,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <div>
-                <h2 className="font-heading text-xl font-bold leading-none">PenGame</h2>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-background/50 font-body">Publishing</span>
-              </div>
+            <Link to="/" className="mb-6 flex items-baseline gap-2">
+              <span className="font-heading text-2xl font-extrabold tracking-[-0.03em]">PenGame</span>
+              <span className="h-2 w-2 rounded-full bg-secondary" aria-hidden="true" />
+              <span className="text-sm text-background/60">Publishing</span>
             </Link>
             <p className="text-background/60 font-body text-sm leading-relaxed">
               A pioneering publishing company based in Atlanta, Georgia. We combine traditional storytelling with immersive technologies to create unique digital experiences.
@@ -72,7 +69,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Home", path: "/" },
-                { label: "Publications", path: "/publications" },
+                { label: "Books", path: "/publications" },
+                { label: "Games & XR", path: "/games" },
                 { label: "About Us", path: "/about" },
                 { label: "Contact", path: "/contact" },
               ].map((link) => (
@@ -101,14 +99,16 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-heading text-lg font-semibold mb-6">Explore Our Worlds</h3>
-            <p className="text-background/60 font-body text-sm mb-4">
-              Continue your story in our immersive reading, music, and learning destinations.
-            </p>
-            <ul className="space-y-3 font-body text-sm">
-              <li><a className="text-background/70 hover:text-secondary" href="https://storyscapexr.com" target="_blank" rel="noopener noreferrer">StoryScape XR</a></li>
-              <li><a className="text-background/70 hover:text-secondary" href="https://turnupmusic.online" target="_blank" rel="noopener noreferrer">Turn Up Music</a></li>
-              <li><a className="text-background/70 hover:text-secondary" href="https://niasnumbergarden.shop" target="_blank" rel="noopener noreferrer">Nia's Number Garden</a></li>
+            <h3 className="font-heading text-lg font-semibold mb-6">Play</h3>
+            <ul className="space-y-3 text-sm">
+              {GAMES.filter((g) => g.status === "live").slice(0, 6).map((g) => (
+                <li key={g.id}>
+                  <a className="text-background/60 transition-colors hover:text-secondary" href={g.url} target="_blank" rel="noopener noreferrer">{g.title}</a>
+                </li>
+              ))}
+              <li>
+                <Link to="/games" className="font-semibold text-secondary hover:underline underline-offset-4">All games &amp; worlds</Link>
+              </li>
             </ul>
           </div>
         </div>
