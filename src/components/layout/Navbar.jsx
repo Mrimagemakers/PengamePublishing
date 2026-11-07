@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, BookOpen, ShoppingCart, Phone, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ShoppingCart, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
   { label: "Home", path: "/" },
-  { label: "Publications", path: "/publications" },
+  { label: "Books", path: "/publications" },
   { label: "Shop", path: "/shop" },
-  { label: "AR / VR", path: "/experiences" },
-  { label: "Resources", path: "/resources" },
+  { label: "Games & XR", path: "/games" },
   { label: "Big Book of Cookies", path: "/big-book-of-cookies" },
   { label: "Leadership Academy", path: "/leadership-academy" },
-  { label: "Rap IQ City", href: "https://claude.ai/public/artifacts/192a190c-d963-4445-aeaa-8d6ec6945248", external: true },
-  { label: "StoryScape XR", href: "https://storyscapexr.com", external: true },
-  { label: "Turn Up Music", href: "https://turnupmusic.online", external: true },
-  { label: "Nia's Garden", href: "https://niasnumbergarden.shop", external: true },
+  { label: "Services", path: "/services" },
+  { label: "Resources", path: "/resources" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -38,19 +34,19 @@ export default function Navbar() {
   return (
     <>
       {/* Top bar */}
-      <div className="bg-primary text-primary-foreground text-sm hidden md:block">
+      <div className="hidden bg-[#0A1730] text-sm text-white/80 md:block">
         <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <a href="tel:+17705854678" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+            <a href="tel:+17705854678" className="flex items-center gap-1.5 hover:text-[#F2D27A] transition-colors">
               <Phone className="w-3.5 h-3.5" />
               (770) 585-4678
             </a>
-            <a href="mailto:Info@pengamepublishing.com" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+            <a href="mailto:Info@pengamepublishing.com" className="flex items-center gap-1.5 hover:text-[#F2D27A] transition-colors">
               <Mail className="w-3.5 h-3.5" />
               Info@pengamepublishing.com
             </a>
           </div>
-          <span className="text-primary-foreground/70">Atlanta, GA | Rewriting the Future of Publishing</span>
+          <span className="text-white/60">Atlanta, Georgia</span>
         </div>
       </div>
 
@@ -63,22 +59,14 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="font-heading text-xl font-bold text-foreground leading-none">
-                PenGame
-              </h1>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-body">
-                Publishing
-              </span>
-            </div>
+          <Link to="/" className="group flex items-baseline gap-2 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary" aria-label="PenGame Publishing home">
+            <span className="font-heading text-2xl font-extrabold tracking-[-0.03em] text-primary">PenGame</span>
+            <span className="h-2 w-2 rounded-full bg-secondary" aria-hidden="true" />
+            <span className="text-sm font-medium text-muted-foreground">Publishing</span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden xl:flex items-center gap-0">
+          <nav className="hidden xl:flex items-center gap-1" aria-label="Main">
             {NAV_LINKS.map((link) =>
               link.external ? (
                 <a
@@ -94,10 +82,10 @@ export default function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-4 py-2 rounded-lg text-sm font-body font-medium transition-all duration-200 ${
+                  className={`relative whitespace-nowrap px-2.5 py-2 text-[15px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:transition-colors ${
                     location.pathname === link.path
-                      ? "bg-primary text-primary-foreground"
-                      : "text-foreground hover:bg-muted"
+                      ? "text-primary after:bg-secondary"
+                      : "text-foreground/75 hover:text-primary after:bg-transparent"
                   }`}
                 >
                   {link.label}
@@ -107,15 +95,13 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link to="/publications">
-              <Button className="hidden sm:inline-flex bg-secondary hover:bg-secondary/90 text-secondary-foreground font-body font-semibold">
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Shop Books
-              </Button>
+            <Link to="/shop" className="hidden sm:inline-flex shrink-0 whitespace-nowrap items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">
+              <ShoppingCart className="h-4 w-4" aria-hidden="true" />
+              Shop books
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} className="xl:hidden p-2 rounded-lg hover:bg-muted transition-colors"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -129,7 +115,7 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden overflow-hidden border-t border-border"
+              className="xl:hidden overflow-hidden border-t border-border"
             >
               <nav className="px-6 py-4 space-y-1 bg-card">
                 {NAV_LINKS.map((link) =>
@@ -149,7 +135,7 @@ export default function Navbar() {
                       to={link.path}
                       className={`block px-4 py-3 rounded-lg text-sm font-body font-medium transition-colors ${
                         location.pathname === link.path
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-muted text-primary border-l-2 border-secondary"
                           : "text-foreground hover:bg-muted"
                       }`}
                     >
