@@ -15,6 +15,7 @@ import LeadershipAcademy from '@/pages/LeadershipAcademy';
 import Shop from '@/pages/Shop';
 import Resources from '@/pages/Resources';
 import Games from '@/pages/Games';
+import Services from '@/pages/Services';
 
 const AuthenticatedApp = () => {
   return (
@@ -26,6 +27,7 @@ const AuthenticatedApp = () => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/experiences" element={<Games />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/big-book-of-cookies" element={<BigBookOfCookies />} />

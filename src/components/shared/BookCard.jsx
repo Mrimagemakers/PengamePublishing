@@ -1,7 +1,13 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Clock } from "lucide-react";
+import { ExternalLink, Clock, Mail } from "lucide-react";
+
+const INQUIRY_EMAIL = "Info@pengamepublishing.com";
+
+function inquiryHref({ subject, body }) {
+  return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 import { motion } from "framer-motion";
 
 // A URL is considered "real" if it points to a specific product/page, not just a homepage
@@ -16,7 +22,10 @@ function isSpecificUrl(url) {
 }
 
 export default function BookCard({ book, index = 0 }) {
-  const hasLink = isSpecificUrl(book.purchaseUrl);
+  const inquiry = book.inquiry ? inquiryHref(book.inquiry) : null;
+  const hasLink = Boolean(inquiry) || isSpecificUrl(book.purchaseUrl);
+  const href = inquiry || book.purchaseUrl;
+  const linkProps = inquiry ? {} : { target: "_blank", rel: "noopener noreferrer" };
 
   const imageContent = (
     <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 p-6 flex justify-center">
@@ -48,7 +57,7 @@ export default function BookCard({ book, index = 0 }) {
     >
       {/* Image — clickable if link exists */}
       {hasLink ? (
-        <a href={book.purchaseUrl} target="_blank" rel="noopener noreferrer">
+        <a href={href} {...linkProps}>
           {imageContent}
         </a>
       ) : (
@@ -72,10 +81,19 @@ export default function BookCard({ book, index = 0 }) {
         )}
 
         {hasLink ? (
-          <a href={book.purchaseUrl} target="_blank" rel="noopener noreferrer">
+          <a href={href} {...linkProps}>
             <Button className="w-full bg-primary hover:bg-primary/90 font-body font-semibold text-sm">
-              Purchase
-              <ExternalLink className="w-4 h-4 ml-2" />
+              {inquiry ? (
+                <>
+                  <Mail className="w-4 h-4 mr-2" aria-hidden="true" />
+                  {book.inquiry.label}
+                </>
+              ) : (
+                <>
+                  Purchase
+                  <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
+                </>
+              )}
             </Button>
           </a>
         ) : (

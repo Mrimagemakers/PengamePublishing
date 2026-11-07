@@ -71,6 +71,7 @@ export default function Footer() {
                 { label: "Home", path: "/" },
                 { label: "Books", path: "/publications" },
                 { label: "Games & XR", path: "/games" },
+                { label: "Services & quotes", path: "/services" },
                 { label: "About Us", path: "/about" },
                 { label: "Contact", path: "/contact" },
               ].map((link) => (
