@@ -157,12 +157,15 @@ export const GAMES = [
     title: "Hue’s Got Flow: The Coloring Odyssey",
     tagline: "Paint the city back to life with Hue’s Golden Magic Pen.",
     description:
-      "A browser game based on the hip-hop coloring book. In development.",
-    url: "https://www.amazon.com/Hues-Got-Flow-Hip-Hop-Coloring/dp/B0CFDKNZXZ",
-    urlLabel: "Get the book",
-    platforms: ["browser"],
-    status: "coming",
+      "A browser and VR game based on the hip-hop coloring book.",
+    url: "https://mrimagemakers.github.io/HuesColoringOdyssey/",
+    platforms: ["browser", "vr"],
+    status: "live",
     motif: "pen",
     ground: "#0B2A3F",
+    book: {
+      title: "Hue’s Got Flow",
+      url: "https://www.amazon.com/Hues-Got-Flow-Hip-Hop-Coloring/dp/B0CFDKNZXZ",
+    },
   },
 ];
