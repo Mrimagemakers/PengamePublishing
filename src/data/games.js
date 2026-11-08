@@ -16,6 +16,7 @@ export const GAMES = [
   {
     id: "world-of-coasters",
     image: "/game-art/world-of-coasters.webp",
+    artHasTitle: true,
     title: "World of Coasters",
     tagline: "Ride themed roller coasters around the world and beyond it.",
     description:
