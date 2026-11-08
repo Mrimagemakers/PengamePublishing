@@ -15,6 +15,9 @@ export function GameCard({ game, compact = false }) {
         </div>
       </a>
       <div className="mt-4 flex flex-1 flex-col">
+        {game.status === "coming" && game.artHasTitle && (
+          <span className="mb-2 self-start rounded-full bg-[#F2D27A] px-2 py-0.5 text-xs font-semibold text-[#0A1730]">Coming soon</span>
+        )}
         <p className="text-[15px] leading-snug text-foreground">{game.tagline}</p>
         <p className="mt-2 text-sm text-muted-foreground">
           {game.platforms.map((p) => PLATFORMS[p]).join(", ")}

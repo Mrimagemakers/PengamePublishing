@@ -15,6 +15,7 @@ export const PLATFORMS = {
 export const GAMES = [
   {
     id: "world-of-coasters",
+    image: "/game-art/world-of-coasters.webp",
     title: "World of Coasters",
     tagline: "Ride themed roller coasters around the world and beyond it.",
     description:
@@ -28,6 +29,7 @@ export const GAMES = [
   },
   {
     id: "cruising-usa",
+    image: "/game-art/cruising-usa.webp",
     title: "Cruising USA",
     tagline: "Take the wheel on a 3D road trip across America.",
     description:
@@ -41,6 +43,7 @@ export const GAMES = [
   },
   {
     id: "first-flight",
+    image: "/game-art/first-flight.webp",
     title: "First Flight",
     tagline: "Learn to fly, then explore careers in aviation.",
     description:
@@ -54,6 +57,7 @@ export const GAMES = [
   },
   {
     id: "great-outdoors",
+    image: "/game-art/great-outdoors.webp",
     title: "Great Outdoors Adventure",
     tagline: "Drive the backcountry and spot wildlife along the way.",
     description: "A driving and wildlife game set in open country. Play in your browser, in a VR headset, or in AR on your phone.",
@@ -66,6 +70,7 @@ export const GAMES = [
   },
   {
     id: "nias-world",
+    image: "/game-art/nias-world.webp",
     title: "Nia’s Number Garden World",
     tagline: "Step into the Number Garden from the Bright Minds Explorers book.",
     description:
@@ -80,6 +85,8 @@ export const GAMES = [
   },
   {
     id: "ravenbrook",
+    image: "/game-art/ravenbrook.webp",
+    artHasTitle: true,
     title: "Ravenbrook Manor",
     tagline: "Survive the night in the town from Halloween Haunts.",
     description:
@@ -98,6 +105,7 @@ export const GAMES = [
   },
   {
     id: "turn-up-music",
+    image: "/game-art/turn-up-music.webp",
     title: "Turn Up Music",
     tagline: "Internet radio with a VR lounge to listen and relax.",
     description: "Stream stations, share music, and hang out in the VR lounge.",
@@ -109,6 +117,7 @@ export const GAMES = [
   },
   {
     id: "storyscape-xr",
+    image: "/game-art/storyscape-xr.webp",
     title: "StoryScape XR",
     tagline: "Read, watch, and play inside virtual rooms.",
     description:
@@ -121,6 +130,8 @@ export const GAMES = [
   },
   {
     id: "rap-iq-city",
+    image: "/game-art/rap-iq-city.webp",
+    artHasTitle: true,
     title: "Rap IQ City",
     tagline: "Test your hip-hop knowledge and earn Beat Coins.",
     description: "A hip-hop trivia game. Score 800+ Beat Coins in All City mode.",
@@ -132,9 +143,10 @@ export const GAMES = [
   },
   {
     id: "porch-war",
+    image: "/game-art/porch-war.webp",
     title: "Porch War",
-    tagline: "A neighborhood showdown from the PenGame studio.",
-    description: "Plays in your browser on phone or computer.",
+    tagline: "Old feud. New bruises. Settle it in the trailer park.",
+    description: "A county-line brawler: the Millers and the Smiths fight across town to find Rick’s missing tires. Story mode, duels, and local co-op.",
     url: "https://mrimagemakers.github.io/PorchWar/",
     platforms: ["browser"],
     status: "live",
@@ -143,6 +155,8 @@ export const GAMES = [
   },
   {
     id: "hues-got-flow",
+    image: "/game-art/hues-got-flow.webp",
+    artHasTitle: true,
     title: "Hue’s Got Flow: The Coloring Odyssey",
     tagline: "Paint the city back to life with Hue’s Golden Magic Pen.",
     description:
