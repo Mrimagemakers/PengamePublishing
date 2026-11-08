@@ -23,7 +23,7 @@ export default function GamesShelf() {
           </Link>
         </div>
         {/* Dark-section overrides for the shared card's token colors */}
-        <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-6 [&_.text-foreground]:text-white/90 [&_.text-muted-foreground]:text-white/55">
+        <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 [&_.text-foreground]:text-white/90 [&_.text-muted-foreground]:text-white/55">
           {featured.map((g) => (
             <GameCard key={g.id} game={g} compact />
           ))}

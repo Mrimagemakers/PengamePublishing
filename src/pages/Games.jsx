@@ -15,6 +15,9 @@ export function GameCard({ game, compact = false }) {
         </div>
       </a>
       <div className="mt-4 flex flex-1 flex-col">
+        {game.status === "coming" && game.image && (
+          <span className="mb-2 self-start rounded-full bg-[#F2D27A] px-2 py-0.5 text-xs font-semibold text-[#0A1730]">Coming soon</span>
+        )}
         <p className="text-[15px] leading-snug text-foreground">{game.tagline}</p>
         <p className="mt-2 text-sm text-muted-foreground">
           {game.platforms.map((p) => PLATFORMS[p]).join(", ")}
@@ -77,7 +80,7 @@ export default function Games() {
           <p className="mb-8 text-sm text-muted-foreground" aria-live="polite">
             {shown.length} {shown.length === 1 ? "title" : "titles"}
           </p>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((g) => (
               <GameCard key={g.id} game={g} />
             ))}
