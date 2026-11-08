@@ -113,7 +113,7 @@ const MOTIFS = {
 export default function GameCover({ game, compact = false }) {
   return (
     <div
-      className="relative aspect-[3/4] overflow-hidden rounded-[4px] shadow-[inset_6px_0_0_rgba(0,0,0,.28)]"
+      className="relative aspect-video overflow-hidden rounded-[4px] shadow-[inset_6px_0_0_rgba(0,0,0,.28)]"
       style={{ backgroundColor: game.ground, color: game.ground }}
     >
       {game.image ? (
@@ -122,13 +122,14 @@ export default function GameCover({ game, compact = false }) {
           alt=""
           loading="lazy"
           decoding="async"
-          width="600"
-          height="800"
+          width="800"
+          height="450"
           className="absolute inset-0 h-full w-full object-cover"
         />
       ) : (
       <svg
-        viewBox="0 0 300 400"
+        viewBox="0 -60 300 520"
+        preserveAspectRatio="xMidYMid slice"
         className="absolute inset-0 h-full w-full"
         fill="none"
         stroke={GOLD}
@@ -139,19 +140,19 @@ export default function GameCover({ game, compact = false }) {
         {MOTIFS[game.motif]}
       </svg>
       )}
-      {!game.artHasTitle && (
-      <div className={`absolute inset-x-0 bottom-0 p-4 pt-20 bg-gradient-to-t ${game.image ? "from-black/85 via-black/45" : "from-black/55"} to-transparent`}>
+      {!game.image && (
+      <div className={`absolute inset-x-0 bottom-0 p-4 pt-20 bg-gradient-to-t from-black/55 to-transparent`}>
         <p className={`font-heading font-extrabold leading-[0.95] tracking-tight text-[#F2D27A] ${compact ? "text-lg" : "text-2xl"}`}>
           {game.title}
         </p>
       </div>
       )}
       {game.rating && (
-        <span className={`absolute right-3 ${game.artHasTitle ? "bottom-3" : "top-3"} rounded-full border border-[#F2D27A]/60 bg-black/60 px-2 py-0.5 text-xs font-semibold text-[#F2D27A]`}>
+        <span className={`absolute right-3 top-3 rounded-full border border-[#F2D27A]/60 bg-black/60 px-2 py-0.5 text-xs font-semibold text-[#F2D27A]`}>
           {game.rating}
         </span>
       )}
-      {game.status === "coming" && !game.artHasTitle && (
+      {game.status === "coming" && !game.image && (
         <span className={`absolute left-3 top-3 rounded-full bg-[#F2D27A] px-2 py-0.5 text-xs font-semibold text-[#0A1730] shadow`}>
           Coming soon
         </span>

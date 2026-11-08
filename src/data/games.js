@@ -16,7 +16,6 @@ export const GAMES = [
   {
     id: "world-of-coasters",
     image: "/game-art/world-of-coasters.webp",
-    artHasTitle: true,
     title: "World of Coasters",
     tagline: "Ride themed roller coasters around the world and beyond it.",
     description:
@@ -87,7 +86,6 @@ export const GAMES = [
   {
     id: "ravenbrook",
     image: "/game-art/ravenbrook.webp",
-    artHasTitle: true,
     title: "Ravenbrook Manor",
     tagline: "Survive the night in the town from Halloween Haunts.",
     description:
@@ -132,7 +130,6 @@ export const GAMES = [
   {
     id: "rap-iq-city",
     image: "/game-art/rap-iq-city.webp",
-    artHasTitle: true,
     title: "Rap IQ City",
     tagline: "Test your hip-hop knowledge and earn Beat Coins.",
     description: "A hip-hop trivia game. Score 800+ Beat Coins in All City mode.",
@@ -157,7 +154,6 @@ export const GAMES = [
   {
     id: "hues-got-flow",
     image: "/game-art/hues-got-flow.webp",
-    artHasTitle: true,
     title: "Hue’s Got Flow: The Coloring Odyssey",
     tagline: "Paint the city back to life with Hue’s Golden Magic Pen.",
     description:
