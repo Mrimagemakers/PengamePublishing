@@ -4,6 +4,7 @@
 //
 // platforms: "browser" | "vr" | "ar" | "horizon"
 // status:    "live" | "coming"
+// altLinks:  optional extra places to play, e.g. [{ label, url }]
 
 export const PLATFORMS = {
   browser: "Browser",
@@ -89,9 +90,12 @@ export const GAMES = [
     title: "Ravenbrook Manor",
     tagline: "Survive the night in the town from Halloween Haunts.",
     description:
-      "A multiplayer survival-horror world in Meta Horizon Worlds, based on the Halloween Haunts coloring book. Ages 18+.",
-    url: "https://horizon.meta.com/world/10163428610499954/",
-    platforms: ["horizon", "vr"],
+      "A survival-horror game based on the Halloween Haunts coloring book. Play the web version in your browser or VR headset, or join the multiplayer world in Meta Horizon Worlds. Ages 18+.",
+    url: "https://mrimagemakers.github.io/RavenbrookManor/",
+    altLinks: [
+      { label: "Open in Horizon Worlds", url: "https://horizon.meta.com/world/10163428610499954/" },
+    ],
+    platforms: ["browser", "vr", "horizon"],
     status: "live",
     motif: "manor",
     ground: "#24112A",

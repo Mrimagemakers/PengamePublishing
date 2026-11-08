@@ -25,9 +25,15 @@ export function GameCard({ game, compact = false }) {
         {!compact && (
           <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-4 text-sm font-semibold">
             <a href={game.url} {...external} className="inline-flex items-center gap-1 text-primary underline-offset-4 hover:underline">
-              {game.urlLabel || (game.platforms.includes("horizon") ? "Open in Horizon" : "Play now")}
+              {game.urlLabel || "Play now"}
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
+            {game.altLinks?.map((l) => (
+              <a key={l.url} href={l.url} {...external} className="inline-flex items-center gap-1 text-primary underline-offset-4 hover:underline">
+                {l.label}
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            ))}
             {game.book && (
               <a href={game.book.url} {...external} className="inline-flex items-center gap-1.5 text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
                 <BookOpen className="h-4 w-4" aria-hidden="true" />
@@ -91,7 +97,7 @@ export default function Games() {
             <div>
               <h2 className="font-heading text-xl font-bold">Playing in VR</h2>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                On a Meta Quest, open this page in the headset’s browser, pick a game, and tap <em>Enter VR</em> once it loads. Ravenbrook Manor opens in the Horizon Worlds app instead.
+                On a Meta Quest, open this page in the headset’s browser, pick a game, and tap <em>Enter VR</em> once it loads. Ravenbrook Manor can also be played with others in the Horizon Worlds app.
               </p>
             </div>
           </aside>
