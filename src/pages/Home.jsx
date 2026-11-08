@@ -6,7 +6,7 @@ import SeriesBanner from "@/components/home/SeriesBanner";
 import AboutPreview from "@/components/home/AboutPreview";
 import LeadershipAcademy from "@/components/home/LeadershipAcademy";
 import RapIQCityCard from "@/components/home/RapIQCityCard";
-import Ecosystem from "@/components/home/Ecosystem";
+import GamesShelf from "@/components/home/GamesShelf";
 import PublishingExperiences from "@/components/home/PublishingExperiences";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
       <SeriesBanner />
       <PublishingExperiences />
       <BookShowcase />
-      <Ecosystem />
+      <GamesShelf />
       <LeadershipAcademy />
       <RapIQCityCard />
       <AboutPreview />
