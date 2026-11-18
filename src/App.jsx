@@ -14,7 +14,7 @@ import BigBookOfCookies from '@/pages/BigBookOfCookies';
 import LeadershipAcademy from '@/pages/LeadershipAcademy';
 import Shop from '@/pages/Shop';
 import Resources from '@/pages/Resources';
-import Games from '@/pages/Games';
+import GamePass from '@/pages/GamePass';
 import Services from '@/pages/Services';
 
 const AuthenticatedApp = () => {
@@ -25,8 +25,9 @@ const AuthenticatedApp = () => {
         <Route path="/publications" element={<Publications />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/resources" element={<Resources />} />
-        <Route path="/experiences" element={<Games />} />
-        <Route path="/games" element={<Games />} />
+        <Route path="/experiences" element={<GamePass />} />
+        <Route path="/games" element={<GamePass />} />
+        <Route path="/game-pass" element={<GamePass />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,0 +1,13 @@
+name = "pengame-gamepass"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+SITE_URL = "https://pengamepublishing.com"
+ALLOWED_ORIGINS = "https://pengamepublishing.com,https://www.pengamepublishing.com"
+SALES_ENABLED = "false"
+GAME_CATALOG = "[]"
+
+[[r2_buckets]]
+binding = "LEVELS"
+bucket_name = "pengame-private-levels"

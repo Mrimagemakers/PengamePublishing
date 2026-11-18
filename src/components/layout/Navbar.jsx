@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Books", path: "/publications" },
   { label: "Shop", path: "/shop" },
-  { label: "Games & XR", path: "/games" },
+  { label: "Game Pass", path: "/game-pass" },
   { label: "Big Book of Cookies", path: "/big-book-of-cookies" },
   { label: "Leadership Academy", path: "/leadership-academy" },
   { label: "Services", path: "/services" },

@@ -24,6 +24,10 @@ jobs:
           node-version: '22'
       - run: npm install --no-audit --no-fund
       - run: npm run build
+        env:
+          VITE_GAMEPASS_API_URL: ${{ vars.VITE_GAMEPASS_API_URL }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
       - name: Support deep links on GitHub Pages
         run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5

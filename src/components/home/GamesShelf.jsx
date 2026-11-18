@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { GameCard } from "@/pages/Games";
+import GameCover from "@/components/games/GameCover";
 import { GAMES } from "@/data/games";
 
 export default function GamesShelf() {
@@ -18,14 +18,14 @@ export default function GamesShelf() {
               Our books become worlds you can drive through, ride, and fly over.
             </p>
           </div>
-          <Link to="/games" className="inline-flex items-center gap-2 rounded-full border border-[#F2D27A] px-5 py-2.5 font-semibold text-[#F2D27A] transition-colors hover:bg-[#F2D27A] hover:text-[#0A1730] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2D27A]">
-            See all {GAMES.length} titles <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          <Link to="/game-pass" className="inline-flex items-center gap-2 rounded-full border border-[#F2D27A] px-5 py-2.5 font-semibold text-[#F2D27A] transition-colors hover:bg-[#F2D27A] hover:text-[#0A1730] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2D27A]">
+            Explore Game Pass <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
         {/* Dark-section overrides for the shared card's token colors */}
         <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 [&_.text-foreground]:text-white/90 [&_.text-muted-foreground]:text-white/55">
           {featured.map((g) => (
-            <GameCard key={g.id} game={g} compact />
+            <Link key={g.id} to="/game-pass#arcade" aria-label={`Explore ${g.title} on Game Pass`}><GameCover game={g} compact /><p className="mt-3 text-sm text-white/70">{g.tagline}</p></Link>
           ))}
         </div>
         <div className="mt-6 h-px bg-gradient-to-r from-[#D9A53A] via-[#D9A53A]/40 to-transparent" aria-hidden="true" />
