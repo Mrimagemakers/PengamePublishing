@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import HoloBookStage from "@/components/home/holoBook/HoloBookStage";
+import ViewInAR from "@/components/home/holoBook/ViewInAR";
 
-// The page becomes a world: an open book on a gold grid that runs to the horizon.
-// The grid draws in once on load (disabled for reduced motion via index.css).
+// The page becomes a world: a gold grid that runs to the horizon, with a floating
+// 3D book projecting holograms (see holoBook/). The grid draws in once on load
+// (disabled for reduced motion via index.css).
 const VP = { x: 880, y: 250 };
 const fan = Array.from({ length: 17 }, (_, i) => 280 + i * 75);
 const rows = [270, 290, 318, 356, 408, 480, 580];
@@ -36,12 +39,6 @@ function HorizonArt() {
         ))}
       </g>
       <path d={`M300 ${VP.y} H1200`} stroke="#F2D27A" strokeOpacity=".5" />
-      {/* Open book in the foreground */}
-      <g transform="translate(880 520)" fill="none" stroke="#F2D27A" strokeWidth="2.5" strokeLinejoin="round" className="hero-book">
-        <path d="M0 40 C-50 10 -130 10 -190 30 V-60 C-130 -80 -50 -80 0 -40 C50 -80 130 -80 190 -60 V30 C130 10 50 10 0 40 Z" fill="#0A1730" />
-        <path d="M0 -40 V40" />
-        <path d="M-160 -40 C-110 -55 -50 -50 -20 -28 M-160 -15 C-110 -30 -50 -25 -20 -5 M20 -28 C50 -50 110 -55 160 -40 M20 -5 C50 -25 110 -30 160 -15" strokeOpacity=".45" strokeWidth="1.5" />
-      </g>
     </svg>
   );
 }
@@ -53,14 +50,15 @@ export default function HeroSection() {
         .hero-grid path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hero-draw 1.8s cubic-bezier(.2,.7,.2,1) forwards; }
         .hero-grid path:nth-child(odd) { animation-delay: .15s; }
         .hero-book { opacity: 0; animation: hero-rise .9s .9s ease-out forwards; }
+        .hero-book.opacity-0 { animation: none; }
         @keyframes hero-draw { to { stroke-dashoffset: 0; } }
-        @keyframes hero-rise { from { opacity: 0; transform: translate(880px, 545px); } to { opacity: 1; transform: translate(880px, 520px); } }
-        @media (prefers-reduced-motion: reduce) { .hero-grid path { stroke-dashoffset: 0; } .hero-book { opacity: 1; } }
+        @keyframes hero-rise { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .hero-grid path { stroke-dashoffset: 0; } .hero-book { opacity: 1; } .hero-book.opacity-0 { opacity: 0; } }
       `}</style>
       <HorizonArt />
       <div className="absolute inset-0 bg-gradient-to-r from-[#0A1730] via-[#0A1730]/85 to-transparent md:via-[#0A1730]/60" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-36 lg:py-40">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 pb-6 md:pt-36 lg:py-40">
         <div className="max-w-2xl">
           <h1 className="font-heading text-5xl font-extrabold leading-[0.92] tracking-[-0.03em] sm:text-6xl lg:text-[5.5rem]">
             Books you can read, play, and step inside.
@@ -82,8 +80,14 @@ export default function HeroSection() {
               Play the games
             </Link>
           </div>
+          <div className="mt-5 empty:hidden">
+            <ViewInAR />
+          </div>
         </div>
       </div>
+
+      {/* Below the buttons on phones and tablets; the right half of the banner on desktop. */}
+      <HoloBookStage className="pointer-events-none relative z-0 mx-auto h-72 w-full max-w-lg sm:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-1/2 lg:max-w-none" />
     </section>
   );
 }
