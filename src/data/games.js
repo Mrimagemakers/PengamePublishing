@@ -5,6 +5,8 @@
 // platforms: "browser" | "vr" | "ar" | "horizon"
 // status:    "live" | "coming"
 // altLinks:  optional extra places to play, e.g. [{ label, url }]
+// free:      true for the one game anyone can play without the Games Pass.
+//            Every other title is listed as part of the Games Pass.
 
 export const PLATFORMS = {
   browser: "Browser",
@@ -27,7 +29,7 @@ export const GAMES = [
     motif: "wave",
     ground: "#063c50",
     featured: true,
-    standalone: true,
+    free: true,
   },
   {
     id: "coloring-odyssey",
@@ -41,7 +43,6 @@ export const GAMES = [
     motif: "pen",
     ground: "#211438",
     featured: true,
-    standalone: true,
   },
   {
     id: "world-of-coasters",

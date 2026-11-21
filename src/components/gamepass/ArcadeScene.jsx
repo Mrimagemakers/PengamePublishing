@@ -13,9 +13,9 @@ export default function ArcadeScene() {
     const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     camera.position.set(0, 0, 13);
     scene.add(new THREE.AmbientLight(0xffffff, 2));
-    const light = new THREE.PointLight(0x49ffde, 90); light.position.set(3, 3, 5); scene.add(light);
+    const light = new THREE.PointLight(0xf2d27a, 90); light.position.set(3, 3, 5); scene.add(light);
     const shapes = [new THREE.TorusGeometry(1, .23, 16, 60), new THREE.IcosahedronGeometry(.8, 0), new THREE.BoxGeometry(1, 1, 1)];
-    const colors = [0xffca66, 0x60ffe3, 0xa58aff];
+    const colors = [0xf2d27a, 0x6f9bea, 0xd9a53a];
     const objects = Array.from({ length: 11 }, (_, i) => {
       const mesh = new THREE.Mesh(shapes[i % 3], new THREE.MeshStandardMaterial({ color: colors[i % 3], metalness: .7, roughness: .25 }));
       mesh.position.set((i % 4 - 1.5) * 2.9, (Math.floor(i / 4) - 1) * 2.7, -i % 3);

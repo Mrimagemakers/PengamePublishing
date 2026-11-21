@@ -1,4 +1,22 @@
-# PenGame Publishing Game Pass
+# PenGame Publishing Games Pass
+
+## How it works now (November 2026)
+
+- `/game-pass` sells the Games Pass with two Stripe Payment Links: $4.99/month and $39.99/year (product "PenGame Games Pass"). The links live in `src/data/gamePass.js`.
+- There are no free first levels. One game is free: the entry in `src/data/games.js` marked `free: true` (Queen of the Seas). Every other title is listed as part of the pass and has no play link on the sales page.
+- `/game-pass/library` is the members' page with every play link. In Stripe, set each Payment Link's **After payment** option to redirect to `https://pengamepublishing.com/game-pass/library`. The page is unlisted (noindex), not protected.
+- **Paying does not lock or unlock anything yet.** Every game is still public at its own address, so anyone who has a game's link can play it. Real access control needs the steps below.
+
+## What real access control would take
+
+1. Player sign-in: an email sign-in (for example the Supabase magic link already wired in `src/lib/gamepass.js`), using the same email the player paid with in Stripe.
+2. A membership check: deploy `server/gamepass/worker.js` with the two new price IDs. It currently finds Stripe customers by `pengame_user_id` metadata, which Payment Link customers don't have, so it needs to look customers up by verified email instead.
+3. Each game checks the membership before it loads, and its paid content moves off public hosting (a private repo and private storage served through the Worker). While a game's files stay in a public GitHub Pages repo, a check inside the game only stops casual players.
+4. Games hosted elsewhere (Horizon Worlds, turnupmusic.online, storyscapexr.com, the Rap IQ City artifact) can't be gated by this setup.
+
+The original level-by-level design follows for reference. Its "level 1 free" model is no longer the plan.
+
+---
 
 Implemented: `/game-pass` and `/games` arcade, Three.js objects, mobile layout, email-link accounts, Stripe subscription Checkout and billing portal, live Stripe entitlement checks, and protected level delivery. Pricing: USD $4.99/month or $39.99/year. Sales default OFF. Existing external games are NOT yet converted or protected by this website change.
 
