@@ -15,6 +15,20 @@ export const PLATFORMS = {
 
 export const GAMES = [
   {
+    id: "coloring-odyssey",
+    image: "/game-art/coloring-odyssey.jpg",
+    title: "Coloring Odyssey",
+    tagline: "Find your colors in a mindful art studio.",
+    description: "Explore themed coloring pages, create with friends on a shared canvas, or relax with a guided coloring session in your browser or VR headset.",
+    url: "https://mrimagemakers.github.io/Coloring-Odyssey/",
+    platforms: ["browser", "vr"],
+    status: "live",
+    motif: "pen",
+    ground: "#211438",
+    featured: true,
+    standalone: true,
+  },
+  {
     id: "world-of-coasters",
     image: "/game-art/world-of-coasters.webp",
     title: "World of Coasters",

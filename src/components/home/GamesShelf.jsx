@@ -5,7 +5,7 @@ import GameCover from "@/components/games/GameCover";
 import { GAMES } from "@/data/games";
 
 export default function GamesShelf() {
-  const featured = GAMES.filter((g) => g.featured).slice(0, 6);
+  const featured = GAMES.filter((g) => g.featured).slice(0, 7);
   return (
     <section id="pengame-games" className="bg-[#0A1730] py-20 text-white md:py-28" aria-labelledby="games-shelf-title">
       <div className="mx-auto max-w-7xl px-6">
@@ -15,7 +15,7 @@ export default function GamesShelf() {
               Play beyond the page
             </h2>
             <p className="mt-4 text-lg text-white/70">
-              Our books become worlds you can drive through, ride, and fly over.
+              Color, drive, ride, and fly through worlds inspired by our books.
             </p>
           </div>
           <Link to="/game-pass" className="inline-flex items-center gap-2 rounded-full border border-[#F2D27A] px-5 py-2.5 font-semibold text-[#F2D27A] transition-colors hover:bg-[#F2D27A] hover:text-[#0A1730] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2D27A]">
@@ -24,9 +24,11 @@ export default function GamesShelf() {
         </div>
         {/* Dark-section overrides for the shared card's token colors */}
         <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 [&_.text-foreground]:text-white/90 [&_.text-muted-foreground]:text-white/55">
-          {featured.map((g) => (
-            <Link key={g.id} to="/game-pass#arcade" aria-label={`Explore ${g.title} on Game Pass`}><GameCover game={g} compact /><p className="mt-3 text-sm text-white/70">{g.tagline}</p></Link>
-          ))}
+          {featured.map((g) => {
+            const CardLink = g.standalone ? "a" : Link;
+            const destination = g.standalone ? { href: g.url } : { to: "/game-pass#arcade" };
+            return <CardLink key={g.id} {...destination} aria-label={g.standalone ? `Play ${g.title}` : `Explore ${g.title} on Game Pass`}><GameCover game={g} compact /><p className="mt-3 text-sm text-white/70">{g.tagline}</p></CardLink>;
+          })}
         </div>
         <div className="mt-6 h-px bg-gradient-to-r from-[#D9A53A] via-[#D9A53A]/40 to-transparent" aria-hidden="true" />
       </div>
