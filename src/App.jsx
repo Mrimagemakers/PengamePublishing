@@ -17,6 +17,8 @@ import Resources from '@/pages/Resources';
 import GamePass from '@/pages/GamePass';
 import GamePassLibrary from '@/pages/GamePassLibrary';
 import Services from '@/pages/Services';
+import GameSafety from '@/pages/GameSafety';
+import { AgeProvider } from '@/components/gamepass/AgeGate';
 
 const AuthenticatedApp = () => {
   return (
@@ -30,6 +32,7 @@ const AuthenticatedApp = () => {
         <Route path="/games" element={<GamePass />} />
         <Route path="/game-pass" element={<GamePass />} />
         <Route path="/game-pass/library" element={<GamePassLibrary />} />
+        <Route path="/game-safety" element={<GameSafety />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -45,7 +48,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClientInstance}>
         <Router basename={window.location.hostname.endsWith('github.io') ? '/PengamePublishing' : '/'}>
-          <AuthenticatedApp />
+          <AgeProvider>
+            <AuthenticatedApp />
+          </AgeProvider>
         </Router>
         <Toaster />
     </QueryClientProvider>
