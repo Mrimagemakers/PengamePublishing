@@ -16,6 +16,9 @@
 // kidSafe:     false when an online feature (sign-up, chat, public posts) is
 //              still on for players under 13. Those games stay locked for
 //              under-13s until the game honors the pg_mode=kid launch flag.
+// kidMode:     true when the game itself switches its online features and
+//              mature pages off when opened with pg_mode=kid. The age check
+//              is still asked before launch, so the game gets the right mode.
 // review:      a note shown while PenGame hasn't checked the game yet
 
 export const PLATFORMS = {
@@ -54,9 +57,9 @@ export const GAMES = [
     platforms: ["browser", "vr"],
     status: "live",
     rating: "all",
-    descriptors: [],
-    online: ["Online community with email sign-up and public posts", "Shared canvas with invited friends"],
-    kidSafe: false,
+    descriptors: ["Horror art in the Halloween Haunts collection (hidden for players under 13)"],
+    online: ["Online community with email sign-up and public posts (off for players under 13)", "Shared canvas with invited friends (off for players under 13)"],
+    kidMode: true,
     motif: "pen",
     ground: "#211438",
     featured: true,

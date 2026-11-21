@@ -20,7 +20,7 @@ before relying on it, especially the children's privacy section.
 | Game | Rating | Why |
 |---|---|---|
 | Queen of the Seas (free) | All Ages | Mild cartoon action. Loads Mindblown's script for saves and events. |
-| Coloring Odyssey | All Ages, online locked under 13 | Email sign-up, public posts and groups (Supabase); shared canvas (PeerJS). |
+| Coloring Odyssey | All Ages, kid mode under 13 | Email sign-up, public posts and groups (Supabase); shared canvas (PeerJS); Halloween Haunts horror pages. Kid mode turns all three off (Coloring-Odyssey PR #1). |
 | World of Coasters | All Ages | Mild arcade target shooting; VR motion warning. |
 | Cruising USA | All Ages | VR motion warning. |
 | First Flight | All Ages | Its own privacy page says no accounts or tracking. VR motion warning. |
@@ -37,9 +37,9 @@ before relying on it, especially the children's privacy section.
 
 ## How the limits work
 
-- **Age check**: neutral date-of-birth screen, asked once per device, the first time a player opens a rated world (or an All Ages world whose online features aren't safe for under-13s). Only the tier (0, 10, 13, 17 or 18) is stored in `localStorage` (`pengame-age-check-v1`). The date of birth isn't stored or sent.
+- **Age check**: neutral date-of-birth screen, asked once per device, the first time a player opens a rated world (or an All Ages world whose online features aren't safe for under-13s, or that has its own kid mode). Only the tier (0, 10, 13, 17 or 18) is stored in `localStorage` (`pengame-age-check-v1`). The date of birth isn't stored or sent.
 - **Teen mode (13–17)**: 17+ and 18+ worlds locked; Stripe buttons replaced with "a parent or guardian needs to buy the pass"; launch links get `?pg_mode=teen`.
-- **Kid mode (under 13)**: worlds above their tier locked; worlds with `kidSafe: false` locked; book shop links and non-PenGame links (Horizon Worlds) hidden; launch links get `?pg_mode=kid`.
+- **Kid mode (under 13)**: worlds above their tier locked; worlds with `kidSafe: false` locked; worlds with `kidMode: true` open in their own kid mode; book shop links and non-PenGame links (Horizon Worlds) hidden; launch links get `?pg_mode=kid`.
 - **Content notice** before every 13+ world and any world with a warning (motion sickness).
 - Footer game links now go to the Games Pass page instead of straight to the games.
 
@@ -65,7 +65,7 @@ if (pgMode) {
 }
 ```
 
-- **Coloring Odyssey**: hide the community (sign-up, posts, groups) and the shared canvas when `pg_mode=kid`. Then set `kidSafe` back to `true` (remove the line) in `src/data/games.js` so under-13s can play it.
+- **Coloring Odyssey**: done in Mrimagemakers/Coloring-Odyssey PR #1. With `pg_mode=kid` it removes the Artist Community (its code never loads), friend rooms and Amazon links, and hides Halloween Haunts; `pg_mode=teen` hides Amazon links. Merge that PR before or with this one, because this one opens Coloring Odyssey to under-13s.
 - **StoryScape XR, Turn Up Music**: switch off voice chat and room invites for `kid`/`teen` (Turn Up already has an under-18 mode; it can read this flag too).
 - **ATL Nightclub Mogul, Queen of the Seas**: confirm what Mindblown's `pod.js` collects. Queen is the free All Ages game, so a third-party script that collects data from children matters for COPPA.
 - **Rap IQ City**: review its content and set the final rating.

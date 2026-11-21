@@ -50,7 +50,7 @@ export default function GameSafety() {
       <div>
         <ul>
           <li><b>Under 18 (teen mode):</b> worlds rated 17+ and 18+ are locked, the pass can only be bought by a parent or guardian, and games are asked to switch off chat, sign-ups and purchases.</li>
-          <li><b>Under 13 (kid mode):</b> worlds rated above the player’s age are locked, worlds with online communities are locked, and links to shops and other sites are hidden.</li>
+          <li><b>Under 13 (kid mode):</b> worlds rated above the player’s age are locked, online communities and chat are switched off or their worlds are locked, and links to shops and other sites are hidden.</li>
           <li><b>Content notices:</b> worlds rated 13+ and up, and worlds with a warning such as motion sickness, show their content notes before they open.</li>
         </ul>
         {mode && <p className="gp-mode" role="status"><ShieldCheck size={18} aria-hidden="true" /> {mode === 'kid' ? 'Kid mode' : 'Teen mode'} is on for this device.</p>}
@@ -66,7 +66,7 @@ export default function GameSafety() {
       <div className="gp-tiers gp-tips">
         <article className="gp-plan"><h3>Check the rating</h3><p>Each world’s card shows its rating, and the list above says why. Ratings are a guide; you know your child best.</p></article>
         <article className="gp-plan"><h3>Buy the pass yourself</h3><p>The Games Pass is a subscription for adults 18 and over to buy. Cancel any time by emailing us.</p></article>
-        <article className="gp-plan"><h3>Watch for online features</h3><p>Some worlds let players meet, talk or post. They’re marked “Online” above and are locked for players under 13.</p></article>
+        <article className="gp-plan"><h3>Watch for online features</h3><p>Some worlds let players meet, talk or post. They’re marked “Online” above, and for players under 13 those features are switched off or the world is locked.</p></article>
         <article className="gp-plan"><h3>Play VR safely</h3><p>Follow the headset maker’s own age guidance, clear the play space, take regular breaks, and stop if anyone feels dizzy or sick.</p></article>
       </div>
     </section>
@@ -76,7 +76,7 @@ export default function GameSafety() {
       <h2 id="privacy-title">What we collect.</h2>
       <div className="gp-prose">
         <p>The Games Pass pages on this site don’t ask players for a name, email address or birth date to be sent to us. The age check’s answer, an age range, stays in this browser’s storage on your device.</p>
-        <p>PenGame Publishing does not knowingly collect personal information from children under 13. Worlds whose online features could collect it are locked for players under 13 on this site. If you think your child has given us personal information, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and we’ll delete it.</p>
+        <p>PenGame Publishing does not knowingly collect personal information from children under 13. For players under 13, this site locks worlds whose online features could collect it, or opens them in kid mode with those features switched off. If you think your child has given us personal information, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and we’ll delete it.</p>
         <p>Games Pass payments are handled by Stripe. PenGame never sees card details.</p>
         <p>These worlds use online features or outside services:</p>
         <ul>{online.map(g => <li key={g.id}><b>{g.title}:</b> {g.online.join('; ')}.</li>)}</ul>

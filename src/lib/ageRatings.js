@@ -29,7 +29,8 @@ export const tierOf = (game) => TIERS[game?.rating] || null;
 export const minAge = (game) => (tierOf(game) ? tierOf(game).min : 18); // unrated games are treated as 18+
 // Under-13s can't use a game whose online features are still on for them.
 export const gateAge = (game) => Math.max(minAge(game), game?.kidSafe === false ? 13 : 0);
-export const needsAgeCheck = (game) => gateAge(game) > 0;
+// Games with kidMode ask too, so they open in kid mode for under-13s.
+export const needsAgeCheck = (game) => gateAge(game) > 0 || game?.kidMode === true;
 
 // Whole years between a birth date and today.
 export function ageOn(birth, today = new Date()) {

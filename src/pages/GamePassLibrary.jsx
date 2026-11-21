@@ -34,7 +34,7 @@ export default function GamePassLibrary() {
       <h1>Welcome to<br /><em>the Games Pass.</em></h1>
       <p className="gp-lead">Thanks for joining. Every world is below with its age rating. Bookmark this page so you can jump back in any time.</p>
       {mode && <p className="gp-mode" role="status"><ShieldCheck size={18} aria-hidden="true" /> {kid
-        ? 'Kid mode is on for this device. Worlds rated above your age, worlds with online communities, and links to other sites are switched off.'
+        ? 'Kid mode is on for this device. Worlds rated above your age, online communities and chat, and links to other sites are switched off.'
         : 'Teen mode is on for this device. Worlds rated 17+ and 18+ are locked, and games are asked to switch off chat, sign-ups and purchases.'} <Link to="/game-safety#parents">How it works</Link></p>}
       <p className="gp-small">Need help with your membership? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. <Link to="/game-safety">Ratings, safety and children’s privacy</Link>.</p>
     </section>

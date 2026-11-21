@@ -41,11 +41,19 @@ test('mature games ask first, then lock or open by age', () => {
 });
 
 test('under-13s are kept out of games whose online community is still on', () => {
+  const chatty = { id: 'chatty', rating: 'all', kidSafe: false };
+  assert.equal(gateAge(chatty), 13);
+  assert.equal(access(chatty, 10).state, 'locked');
+  assert.equal(access(chatty, 10).reason, 'online');
+  assert.equal(access(chatty, 13).state, 'play');
+});
+
+test('Coloring Odyssey asks first, then opens in kid mode for under-13s', () => {
   const coloring = GAMES.find(g => g.id === 'coloring-odyssey');
-  assert.equal(gateAge(coloring), 13);
-  assert.equal(access(coloring, 10).state, 'locked');
-  assert.equal(access(coloring, 10).reason, 'online');
-  assert.equal(access(coloring, 13).state, 'play');
+  assert.equal(access(coloring, null).state, 'ask');
+  assert.equal(access(coloring, 0).state, 'play');
+  assert.equal(launchUrl(coloring.url, 10), 'https://mrimagemakers.github.io/Coloring-Odyssey/?pg_mode=kid');
+  assert.equal(launchUrl(coloring.url, 18), coloring.url);
 });
 
 test('minors get a mode flag only on PenGame links', () => {
