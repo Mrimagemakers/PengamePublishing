@@ -201,6 +201,7 @@ export const GAMES = [
   },
   {
     id: "about-last-night",
+    image: "/game-art/about-last-night.webp",
     title: "About Last Night",
     tagline: "4:17 AM. You wake up in a hospital with someone else's name.",
     description:
