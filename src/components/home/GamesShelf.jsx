@@ -5,7 +5,7 @@ import GameCover from "@/components/games/GameCover";
 import { GAMES } from "@/data/games";
 
 export default function GamesShelf() {
-  const featured = GAMES.filter((g) => g.featured).slice(0, 7);
+  const featured = GAMES.filter((g) => g.featured).slice(0, 8);
   return (
     <section id="pengame-games" className="bg-[#0A1730] py-20 text-white md:py-28" aria-labelledby="games-shelf-title">
       <div className="mx-auto max-w-7xl px-6">

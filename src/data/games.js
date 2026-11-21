@@ -15,6 +15,21 @@ export const PLATFORMS = {
 
 export const GAMES = [
   {
+    id: "queen-of-the-seas",
+    image: "https://mrimagemakers.github.io/QueenoftheSeas/assets/arcade/reef-blocks.webp",
+    title: "Queen of the Seas",
+    tagline: "Dive into a world of ocean puzzles with Dr. Janice Miller.",
+    description: "Explore 302 underwater expeditions, combine powerful gems, and earn treasure. Visit Ocean Arcade for crystal Reef Blocks, Memory Dive, and Pearl Sprint, or explore the AR/VR Treasure Dive.",
+    url: "https://mrimagemakers.github.io/QueenoftheSeas/",
+    altLinks: [{ label: "AR / VR Treasure Dive", url: "https://mrimagemakers.github.io/QueenoftheSeas/treasure-dive.html" }],
+    platforms: ["browser", "vr", "ar"],
+    status: "live",
+    motif: "wave",
+    ground: "#063c50",
+    featured: true,
+    standalone: true,
+  },
+  {
     id: "coloring-odyssey",
     image: "/game-art/coloring-odyssey.jpg",
     title: "Coloring Odyssey",
