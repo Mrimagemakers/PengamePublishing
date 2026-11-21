@@ -5,6 +5,8 @@
 // platforms: "browser" | "vr" | "ar" | "horizon"
 // status:    "live" | "coming"
 // altLinks:  optional extra places to play, e.g. [{ label, url }]
+// free:      true for the one game anyone can play without the Games Pass.
+//            Every other title is listed as part of the Games Pass.
 
 export const PLATFORMS = {
   browser: "Browser",
@@ -27,7 +29,7 @@ export const GAMES = [
     motif: "wave",
     ground: "#063c50",
     featured: true,
-    standalone: true,
+    free: true,
   },
   {
     id: "coloring-odyssey",
@@ -41,7 +43,6 @@ export const GAMES = [
     motif: "pen",
     ground: "#211438",
     featured: true,
-    standalone: true,
   },
   {
     id: "world-of-coasters",
@@ -183,6 +184,33 @@ export const GAMES = [
     status: "live",
     motif: "porch",
     ground: "#2B1D10",
+  },
+  {
+    id: "atl-nightclub-mogul",
+    image: "/game-art/atl-nightclub-mogul.webp",
+    title: "ATL Nightclub Mogul",
+    tagline: "Work every job in the club, then buy Atlanta's hottest venues.",
+    description:
+      "Bartend, run the door, and DJ real shifts at Club Mogul, then buy Atlanta venues, hire staff, and host live nights your friends can join. Ages 18+.",
+    url: "https://mrimagemakers.github.io/ATLESCAPE/nightlife.html",
+    platforms: ["browser", "vr"],
+    status: "live",
+    motif: "mic",
+    ground: "#2A0F1E",
+    rating: "18+",
+  },
+  {
+    id: "about-last-night",
+    image: "/game-art/about-last-night.webp",
+    title: "About Last Night",
+    tagline: "4:17 AM. You wake up in a hospital with someone else's name.",
+    description:
+      "A horror mystery from The Hollow Legion. Piece together what happened last night in your browser or a VR headset, or gather evidence in AR. Works with a game controller.",
+    url: "https://mrimagemakers.github.io/AboutLastNight/",
+    platforms: ["browser", "vr", "ar"],
+    status: "live",
+    motif: "manor",
+    ground: "#0D2024",
   },
   {
     id: "hues-got-flow",

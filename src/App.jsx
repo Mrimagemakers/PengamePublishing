@@ -15,6 +15,7 @@ import LeadershipAcademy from '@/pages/LeadershipAcademy';
 import Shop from '@/pages/Shop';
 import Resources from '@/pages/Resources';
 import GamePass from '@/pages/GamePass';
+import GamePassLibrary from '@/pages/GamePassLibrary';
 import Services from '@/pages/Services';
 
 const AuthenticatedApp = () => {
@@ -28,6 +29,7 @@ const AuthenticatedApp = () => {
         <Route path="/experiences" element={<GamePass />} />
         <Route path="/games" element={<GamePass />} />
         <Route path="/game-pass" element={<GamePass />} />
+        <Route path="/game-pass/library" element={<GamePassLibrary />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
