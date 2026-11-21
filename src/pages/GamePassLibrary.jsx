@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { ArrowUpRight, BookOpen } from 'lucide-react';
 import { GAMES, PLATFORMS } from '@/data/games';
 import { CONTACT_EMAIL } from '@/data/gamePass';
+import GameCover from '@/components/games/GameCover';
 import './gamepass.css';
 
 // Members' landing page. Point both Stripe Payment Links' "After payment"
@@ -27,7 +28,7 @@ export default function GamePassLibrary() {
     </section>
     <section className="gp-section">
       <div className="gp-grid">{games.map(game => <article className="gp-card" key={game.id}>
-        <div className="gp-art"><img src={art(game)} alt={game.title} loading="lazy" /><span>{game.free ? 'FREE' : 'GAMES PASS'}</span></div>
+        <div className="gp-art">{game.image ? <img src={art(game)} alt={game.title} loading="lazy" /> : <div className="gp-art-fallback"><GameCover game={game} /></div>}<span>{game.free ? 'FREE' : 'GAMES PASS'}</span></div>
         <div className="gp-card-body"><h3>{game.title}</h3><p>{game.platforms.map(p => PLATFORMS[p]).join(' · ')}</p>
           <div className="gp-library-links">
             <a className="gp-card-link" href={game.url}>Play now <ArrowUpRight size={16} aria-hidden="true" /></a>

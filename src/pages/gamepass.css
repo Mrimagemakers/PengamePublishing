@@ -46,6 +46,7 @@
 .gp-art{position:relative;aspect-ratio:16/10;overflow:hidden}
 .gp-art img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gp-card:hover img{transform:scale(1.04)}
+.gp-art-fallback,.gp-art-fallback>div{position:absolute;inset:0;height:100%;aspect-ratio:auto!important;border-radius:0!important}
 .gp-art span,.gp-art b{position:absolute;top:14px;background:#0A1730de;border:1px solid #ffffff30;padding:7px 9px;border-radius:5px;font-size:9px;letter-spacing:1px}
 .gp-art span{left:14px}.gp-art b{right:14px;color:var(--gold)}
 .gp-card-body{padding:23px;display:flex;flex-direction:column;flex:1}

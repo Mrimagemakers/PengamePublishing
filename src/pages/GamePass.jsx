@@ -2,6 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import { Gamepad2, ArrowUpRight, LockKeyhole, Sparkles, ShieldCheck } from 'lucide-react';
 import { GAMES } from '@/data/games';
 import { PASS_PLANS, CONTACT_EMAIL } from '@/data/gamePass';
+import GameCover from '@/components/games/GameCover';
 import './gamepass.css';
 const ArcadeScene = lazy(() => import('@/components/gamepass/ArcadeScene'));
 
@@ -50,7 +51,7 @@ export default function GamePass() {
         <div className="gp-filters" role="group" aria-label="Filter by how you play">{[['all','All worlds'],['browser','Browser'],['vr','VR'],['ar','AR']].map(([key,label]) => <button key={key} type="button" aria-pressed={filter === key} onClick={() => setFilter(key)}>{label}</button>)}</div>
       </div>
       <div className="gp-grid">{shown.map((game, index) => <article className="gp-card" key={game.id}>
-        <div className="gp-art"><img src={art(game)} alt={game.title} loading="lazy" /><span>{badge(game)}</span><b>{String(index + 1).padStart(2,'0')}</b></div>
+        <div className="gp-art">{game.image ? <img src={art(game)} alt={game.title} loading="lazy" /> : <div className="gp-art-fallback"><GameCover game={game} /></div>}<span>{badge(game)}</span><b>{String(index + 1).padStart(2,'0')}</b></div>
         <div className="gp-card-body"><h3>{game.title}</h3><p>{game.tagline}</p>
           <a className="gp-card-link" href="#membership" aria-label={`Unlock ${game.title} with the Games Pass`}>Unlock with the Games Pass <LockKeyhole size={16} aria-hidden="true" /></a>
         </div>
