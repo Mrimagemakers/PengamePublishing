@@ -24,7 +24,10 @@ function publishWebsiteImages() {
 
 export default defineConfig({
   logLevel: 'error',
-  base: './',
+  // The site is served from the root of pengamepublishing.com (the github.io
+  // address redirects there). A relative base breaks pages two levels deep,
+  // such as /game-pass/library, because their assets load from the wrong folder.
+  base: '/',
   plugins: [react(), publishWebsiteImages()],
   resolve: { alias: { '@': new URL('./src', import.meta.url).pathname } },
 })
