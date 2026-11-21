@@ -1,4 +1,5 @@
 import React from "react";
+import { TIERS } from "@/lib/ageRatings";
 
 // Gold line-art "covers" for each game, drawn in a 300×400 frame.
 // Every motif is built from the same pen weight so the shelf reads as one set.
@@ -147,9 +148,9 @@ export default function GameCover({ game, compact = false }) {
         </p>
       </div>
       )}
-      {game.rating && (
-        <span className={`absolute right-3 top-3 rounded-full border border-[#F2D27A]/60 bg-black/60 px-2 py-0.5 text-xs font-semibold text-[#F2D27A]`}>
-          {game.rating}
+      {TIERS[game.rating] && (
+        <span className={`absolute right-3 top-3 rounded-full border border-[#F2D27A]/60 bg-black/60 px-2 py-0.5 text-xs font-semibold text-[#F2D27A]`} title={TIERS[game.rating].name}>
+          <span className="sr-only">Rated </span>{TIERS[game.rating].label}
         </span>
       )}
       {game.status === "coming" && !game.image && (

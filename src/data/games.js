@@ -7,6 +7,16 @@
 // altLinks:  optional extra places to play, e.g. [{ label, url }]
 // free:      true for the one game anyone can play without the Games Pass.
 //            Every other title is listed as part of the Games Pass.
+//
+// Age rating (required on every game; see src/lib/ageRatings.js and /game-safety):
+// rating:      "all" | "10+" | "13+" | "17+" | "18+"
+// descriptors: what earns the rating, e.g. ["Horror", "Blood"]
+// warnings:    things to know before playing, e.g. jump scares or motion sickness
+// online:      features that connect players or send data off the device
+// kidSafe:     false when an online feature (sign-up, chat, public posts) is
+//              still on for players under 13. Those games stay locked for
+//              under-13s until the game honors the pg_mode=kid launch flag.
+// review:      a note shown while PenGame hasn't checked the game yet
 
 export const PLATFORMS = {
   browser: "Browser",
@@ -26,6 +36,9 @@ export const GAMES = [
     altLinks: [{ label: "AR / VR Treasure Dive", url: "https://mrimagemakers.github.io/QueenoftheSeas/treasure-dive.html" }],
     platforms: ["browser", "vr", "ar"],
     status: "live",
+    rating: "all",
+    descriptors: ["Mild cartoon action"],
+    online: ["Saves and game events run through Mindblown, an outside game service"],
     motif: "wave",
     ground: "#063c50",
     featured: true,
@@ -40,6 +53,10 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/Coloring-Odyssey/",
     platforms: ["browser", "vr"],
     status: "live",
+    rating: "all",
+    descriptors: [],
+    online: ["Online community with email sign-up and public posts", "Shared canvas with invited friends"],
+    kidSafe: false,
     motif: "pen",
     ground: "#211438",
     featured: true,
@@ -54,6 +71,9 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/WorldofCoasters/",
     platforms: ["browser", "vr"],
     status: "live",
+    rating: "all",
+    descriptors: ["Mild arcade target shooting"],
+    warnings: ["Fast coaster motion in VR can cause motion sickness"],
     motif: "loop",
     ground: "#1B1446",
     featured: true,
@@ -68,6 +88,9 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/CrusingUSA/",
     platforms: ["browser", "vr"],
     status: "live",
+    rating: "all",
+    descriptors: [],
+    warnings: ["Fast driving motion in VR can cause motion sickness"],
     motif: "road",
     ground: "#3A1A12",
     featured: true,
@@ -82,6 +105,9 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/FirstFlight/ar.html",
     platforms: ["browser", "vr", "ar"],
     status: "live",
+    rating: "all",
+    descriptors: [],
+    warnings: ["Flight motion in VR can cause motion sickness"],
     motif: "flight",
     ground: "#0E2C4A",
     featured: true,
@@ -95,6 +121,9 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/GreatOutdoorsAdventure/",
     platforms: ["browser", "vr", "ar"],
     status: "live",
+    rating: "13+",
+    descriptors: ["Violence", "Hunting with realistic firearms"],
+    warnings: ["Animals can be wounded, and a wounded bear may charge"],
     motif: "peaks",
     ground: "#143424",
     featured: true,
@@ -109,6 +138,8 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/NiasVRWorld/",
     platforms: ["browser", "vr", "ar"],
     status: "live",
+    rating: "all",
+    descriptors: [],
     motif: "garden",
     ground: "#0F3B36",
     book: { title: "Nia & the Number Garden", url: "https://niasnumbergarden.shop" },
@@ -120,16 +151,19 @@ export const GAMES = [
     title: "Ravenbrook Manor",
     tagline: "Survive the night in the town from Halloween Haunts.",
     description:
-      "A survival-horror game based on the Halloween Haunts coloring book. Play the web version in your browser or VR headset, or join the multiplayer world in Meta Horizon Worlds. Ages 18+.",
+      "A survival-horror game based on the Halloween Haunts coloring book. Play the web version in your browser or VR headset, or join the multiplayer world in Meta Horizon Worlds.",
     url: "https://mrimagemakers.github.io/RavenbrookManor/",
     altLinks: [
       { label: "Open in Horizon Worlds", url: "https://horizon.meta.com/world/10163428610499954/" },
     ],
     platforms: ["browser", "vr", "horizon"],
     status: "live",
+    rating: "18+",
+    descriptors: ["Horror", "Blood", "Violence"],
+    warnings: ["Jump scares", "Flashing lights (adjustable in the game's settings)"],
+    online: ["Multiplayer in Meta Horizon Worlds, under Meta's own rules"],
     motif: "manor",
     ground: "#24112A",
-    rating: "18+",
     book: {
       title: "Halloween Haunts",
       url: "https://www.amazon.com/Halloween-Haunts-Spooky-Coloring-Adventure/dp/B0CKS6DVFM",
@@ -145,6 +179,9 @@ export const GAMES = [
     url: "https://turnupmusic.online",
     platforms: ["browser", "vr"],
     status: "live",
+    rating: "13+",
+    descriptors: ["Unfiltered internet radio: stations may play explicit lyrics", "Nightlife setting"],
+    online: ["Parties and voice chat (the app switches these off for players under 18)"],
     motif: "wave",
     ground: "#2A0F33",
   },
@@ -158,6 +195,9 @@ export const GAMES = [
     url: "https://storyscapexr.com",
     platforms: ["browser", "vr", "ar"],
     status: "live",
+    rating: "13+",
+    descriptors: [],
+    online: ["Live voice chat with other readers in shared rooms", "Shareable room invites"],
     motif: "pages",
     ground: "#13294B",
   },
@@ -170,6 +210,9 @@ export const GAMES = [
     url: "https://claude.ai/public/artifacts/192a190c-d963-4445-aeaa-8d6ec6945248",
     platforms: ["browser"],
     status: "live",
+    rating: "13+",
+    descriptors: ["Hip-hop references"],
+    review: "Not yet reviewed by PenGame. Rated 13+ until it is.",
     motif: "mic",
     ground: "#3B2A0A",
   },
@@ -182,6 +225,8 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/PorchWar/",
     platforms: ["browser"],
     status: "live",
+    rating: "13+",
+    descriptors: ["Violence", "Brawling with improvised weapons", "Crime themes"],
     motif: "porch",
     ground: "#2B1D10",
   },
@@ -191,13 +236,15 @@ export const GAMES = [
     title: "ATL Nightclub Mogul",
     tagline: "Work every job in the club, then buy Atlanta's hottest venues.",
     description:
-      "Bartend, run the door, and DJ real shifts at Club Mogul, then buy Atlanta venues, hire staff, and host live nights your friends can join. Ages 18+.",
+      "Bartend, run the door, and DJ real shifts at Club Mogul, then buy Atlanta venues, hire staff, and host live nights your friends can join.",
     url: "https://mrimagemakers.github.io/ATLESCAPE/nightlife.html",
     platforms: ["browser", "vr"],
     status: "live",
+    rating: "18+",
+    descriptors: ["Use of alcohol", "Drug references", "Violence", "Crime"],
+    online: ["Online multiplayer rooms with friends", "Saves and game events run through Mindblown, an outside game service"],
     motif: "mic",
     ground: "#2A0F1E",
-    rating: "18+",
   },
   {
     id: "about-last-night",
@@ -209,6 +256,9 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/AboutLastNight/",
     platforms: ["browser", "vr", "ar"],
     status: "live",
+    rating: "17+",
+    descriptors: ["Horror", "Violence", "Disturbing themes"],
+    warnings: ["Jump scares"],
     motif: "manor",
     ground: "#0D2024",
   },
@@ -222,6 +272,8 @@ export const GAMES = [
     url: "https://mrimagemakers.github.io/HuesColoringOdyssey/",
     platforms: ["browser", "vr"],
     status: "live",
+    rating: "10+",
+    descriptors: ["Fantasy violence (cartoon paint blasts)"],
     motif: "pen",
     ground: "#0B2A3F",
     book: {

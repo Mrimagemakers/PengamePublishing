@@ -104,11 +104,16 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               {GAMES.filter((g) => g.status === "live").slice(0, 6).map((g) => (
                 <li key={g.id}>
-                  <a className="text-background/60 transition-colors hover:text-secondary" href={g.url} target="_blank" rel="noopener noreferrer">{g.title}</a>
+                  {g.free
+                    ? <a className="text-background/60 transition-colors hover:text-secondary" href={g.url} target="_blank" rel="noopener noreferrer">{g.title}</a>
+                    : <Link className="text-background/60 transition-colors hover:text-secondary" to="/game-pass#arcade">{g.title}</Link>}
                 </li>
               ))}
               <li>
                 <Link to="/games" className="font-semibold text-secondary hover:underline underline-offset-4">All games &amp; worlds</Link>
+              </li>
+              <li>
+                <Link to="/game-safety" className="text-background/60 transition-colors hover:text-secondary">Game ratings &amp; safety</Link>
               </li>
             </ul>
           </div>
