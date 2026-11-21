@@ -16,7 +16,7 @@ export const PLATFORMS = {
 export const GAMES = [
   {
     id: "queen-of-the-seas",
-    image: "https://mrimagemakers.github.io/QueenoftheSeas/assets/arcade/reef-blocks.webp",
+    image: "/game-art/queen-of-the-seas.webp",
     title: "Queen of the Seas",
     tagline: "Dive into a world of ocean puzzles with Dr. Janice Miller.",
     description: "Explore 302 underwater expeditions, combine powerful gems, and earn treasure. Visit Ocean Arcade for crystal Reef Blocks, Memory Dive, and Pearl Sprint, or explore the AR/VR Treasure Dive.",
