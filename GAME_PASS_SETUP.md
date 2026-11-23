@@ -14,13 +14,12 @@
 
 **To switch it on:**
 
-1. **Supabase.** Create a project. Under Authentication → URL Configuration, set Site URL to `https://pengamepublishing.com` and add `https://pengamepublishing.com/play*` to the redirect allow list. Copy the Project URL and the anon key.
+1. **Supabase.** Done: project `PenGamePublishingSite` (`https://isdikaghisuptqthlqqw.supabase.co`). Its URL and publishable key are already in `src/lib/gamepass.js` and `wrangler.toml`. Still to do in Supabase: under Authentication → URL Configuration, set Site URL to `https://pengamepublishing.com` and add `https://pengamepublishing.com/play*` to the redirect allow list.
 2. **Cloudflare Worker.** From `server/gamepass`, run `npx wrangler deploy`. Then set these secrets with `npx wrangler secret put <NAME>`:
    - `STRIPE_SECRET_KEY`: a restricted key with read access to Customers, Subscriptions and Checkout Sessions is enough.
-   - `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
    - `GATE_SECRET`: any long random string.
    Then check that `https://<worker>/status` returns `{"ready":true}`.
-3. **GitHub.** In the PengamePublishing repo, go to Settings → Secrets and variables → Actions → Variables. Set `VITE_GAMEPASS_API_URL` (the Worker URL, no trailing slash), `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_GATE_ENABLED=true`. Then re-run the Pages deploy.
+3. **GitHub.** In the PengamePublishing repo, go to Settings → Secrets and variables → Actions → Variables. Set `VITE_GAMEPASS_API_URL` (the Worker URL, no trailing slash) and `VITE_GATE_ENABLED=true`. Then re-run the Pages deploy.
 4. **Test it.** Buy one $4.99 game with your own email, sign in at `/play`, check that it opens, then refund yourself in Stripe.
 
 To switch it off again, set `VITE_GATE_ENABLED` to `false` and redeploy. Every game opens freely again.

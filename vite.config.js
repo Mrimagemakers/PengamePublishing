@@ -30,7 +30,7 @@ function gateConfig() {
     apply: 'build',
     generateBundle() {
       const apiUrl = (process.env.VITE_GAMEPASS_API_URL || '').replace(/\/$/, '')
-      const enabled = process.env.VITE_GATE_ENABLED === 'true' && Boolean(apiUrl && process.env.VITE_SUPABASE_URL && process.env.VITE_SUPABASE_ANON_KEY)
+      const enabled = process.env.VITE_GATE_ENABLED === 'true' && Boolean(apiUrl)
       this.emitFile({ type: 'asset', fileName: 'gate-config.json', source: JSON.stringify({ enabled, apiUrl: enabled ? apiUrl : '' }) })
     },
   }
