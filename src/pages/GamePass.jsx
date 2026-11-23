@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Gamepad2, ArrowUpRight, LockKeyhole, Sparkles, ShieldCheck, Users } from 'lucide-react';
+import { Gamepad2, ArrowUpRight, LockKeyhole, ShieldCheck, Users } from 'lucide-react';
 import { GAMES } from '@/data/games';
 import { PASS_PLANS, CONTACT_EMAIL } from '@/data/gamePass';
 import GameCover from '@/components/games/GameCover';
@@ -35,7 +35,9 @@ export default function GamePass() {
         </div>
         <p className="gp-small">Browser adventures · Immersive VR · Worlds beyond the page</p>
       </div>
-      <div className="gp-ticket"><Sparkles /><span>YOUR ALL-ACCESS ADVENTURE</span><strong>GAMES<br />PASS</strong><small>{passGames.length} WORLDS · ONE PASS</small></div>
+      <figure className="gp-banner">
+        <img src={`${import.meta.env.BASE_URL}game-art/game-pass-banner.webp`} width="1600" height="893" alt="Game Pass: AR/VR arcade access from PenGame Publishing" />
+      </figure>
     </section>
 
     <div className="gp-strip"><span>01 / PLAY {freeGame ? freeGame.title.toUpperCase() : 'OUR FREE GAME'} FREE</span><span>02 / PICK MONTHLY OR YEARLY</span><span>03 / PLAY EVERY WORLD</span></div>
