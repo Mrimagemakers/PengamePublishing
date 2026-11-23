@@ -14,7 +14,7 @@ export default function BookExperiences({ member = false }) {
       <div className="gp-card-body"><h3>{book.title}</h3><p>{book.description}</p>
         <p className="gp-card-meta">Interactive book · Browser · AR/VR on supported devices</p>
         <p className="gp-card-meta">{book.digitalPrice} one-time digital purchase · Also included in Game Pass</p>
-        {book.digitalCheckoutUrl ? <a className="gp-card-link" href={book.digitalCheckoutUrl}>Buy digital access — {book.digitalPrice} <ArrowUpRight size={16} aria-hidden="true" /></a> : <p className="gp-small">Individual checkout coming soon.</p>}
+        {book.digitalCheckoutUrl ? <a className="gp-card-link" href={book.digitalCheckoutUrl} rel="noopener">Buy digital access, {book.digitalPrice} <ArrowUpRight size={16} aria-hidden="true" /></a> : <p className="gp-small">Individual checkout coming soon.</p>}
         {member
           ? <a className="gp-card-link" href={book.experienceUrl}>Open AR/VR book <ArrowUpRight size={16} aria-hidden="true" /></a>
           : <><a className="gp-card-link" href="#membership">Get Game Pass <ArrowUpRight size={16} aria-hidden="true" /></a>

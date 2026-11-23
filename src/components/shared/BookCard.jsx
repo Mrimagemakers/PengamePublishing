@@ -79,8 +79,14 @@ export default function BookCard({ book, index = 0 }) {
 
         {book.experienceUrl && <div className="mb-4 rounded-lg bg-primary/5 p-3">
           <p className="text-xs font-semibold mb-2">AR/VR book experience · Included in Game Pass</p>
-          <p className="text-sm mb-2">Digital AR/VR access: {book.digitalPrice} one-time. Individual checkout coming soon.</p>
-          <Link className="text-sm font-semibold text-primary underline" to={`/game-pass#book-${book.id}`}>Explore with Game Pass</Link>
+          <p className="text-sm mb-3">Digital AR/VR access: {book.digitalPrice}, one-time.</p>
+          {book.digitalCheckoutUrl
+            ? <a href={book.digitalCheckoutUrl} rel="noopener" className="mb-2 flex w-full items-center justify-center gap-2 rounded-md bg-secondary px-4 py-2.5 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                Buy digital access, {book.digitalPrice}
+              </a>
+            : <p className="text-sm mb-2">Individual checkout coming soon.</p>}
+          <p className="mb-2 text-xs text-muted-foreground">Secure checkout by Stripe. You go straight to the book after paying.</p>
+          <Link className="text-sm font-semibold text-primary underline" to={`/game-pass#book-${book.id}`}>Or get it with the Games Pass</Link>
         </div>}
 
         {book.price && (
