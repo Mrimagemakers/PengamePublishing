@@ -8,12 +8,14 @@ import RatingBadge from '@/components/gamepass/RatingBadge';
 import { useAge } from '@/components/gamepass/AgeGate';
 import { access, isMinor } from '@/lib/ageRatings';
 import './gamepass.css';
+import PURCHASES from '@/data/purchases.json';
 import BookExperiences from '@/components/gamepass/BookExperiences';
 import GameTicket from '@/components/gamepass/GameTicket';
 const ArcadeScene = lazy(() => import('@/components/gamepass/ArcadeScene'));
 
 const art = (game) => `${import.meta.env.BASE_URL}${game.image.slice(1)}`;
 const platformsLabel = (game) => (game.platforms.includes('vr') ? 'BROWSER + VR' : 'BROWSER');
+const buyable = (game) => PURCHASES.items.find(i => i.id === game.id && i.kind === 'game');
 const contentLine = (game) => (game.descriptors?.length ? game.descriptors.join(' · ') : 'No content warnings');
 
 export default function GamePass() {
@@ -66,7 +68,10 @@ export default function GamePass() {
           <p className="gp-card-meta"><span>{platformsLabel(game)}</span>{contentLine(game)}{game.online?.length ? <><br /><Users size={13} aria-hidden="true" /> Online features</> : null}</p>
           {access(game, meets).state === 'locked'
             ? <Link className="gp-card-link gp-locked" to="/game-safety#ratings">Locked for your age on this device <LockKeyhole size={16} aria-hidden="true" /></Link>
-            : <a className="gp-card-link" href="#membership" aria-label={`Unlock ${game.title} with the Games Pass`}>Unlock with the Games Pass <LockKeyhole size={16} aria-hidden="true" /></a>}
+            : <>
+              <a className="gp-card-link" href="#membership" aria-label={`Unlock ${game.title} with the Games Pass`}>Unlock with the Games Pass <LockKeyhole size={16} aria-hidden="true" /></a>
+              {buyable(game) && <a className="gp-card-link gp-quiet" href={buyable(game).checkoutUrl} aria-label={`Buy ${game.title} on its own for ${buyable(game).price}`}>Or buy this game for {buyable(game).price} <ArrowUpRight size={16} aria-hidden="true" /></a>}
+            </>}
         </div>
       </article>)}</div>
     </section>
@@ -78,6 +83,7 @@ export default function GamePass() {
         <p className="gp-lead">Choose the pass that fits how you play.</p>
         <ul>
           <li>All {passGames.length} Games Pass worlds, plus new ones as they launch</li>
+          <li>Just want one? Most worlds can also be bought on their own, $4.99 to $7.99, yours to keep</li>
           <li>AR/VR book companions for Changing the Channel and Nia and the Number Garden</li>
           <li>Play in your browser, VR headset, or phone AR where a game supports it</li>
           <li>Every world carries a PenGame age rating. <Link to="/game-safety">See ratings and parent info</Link></li>

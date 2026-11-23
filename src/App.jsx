@@ -16,6 +16,7 @@ import Shop from '@/pages/Shop';
 import Resources from '@/pages/Resources';
 import GamePass from '@/pages/GamePass';
 import GamePassLibrary from '@/pages/GamePassLibrary';
+import Play from '@/pages/Play';
 import Services from '@/pages/Services';
 import GameSafety from '@/pages/GameSafety';
 import { AgeProvider } from '@/components/gamepass/AgeGate';
@@ -32,6 +33,7 @@ const AuthenticatedApp = () => {
         <Route path="/games" element={<GamePass />} />
         <Route path="/game-pass" element={<GamePass />} />
         <Route path="/game-pass/library" element={<GamePassLibrary />} />
+        <Route path="/play" element={<Play />} />
         <Route path="/game-safety" element={<GameSafety />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
