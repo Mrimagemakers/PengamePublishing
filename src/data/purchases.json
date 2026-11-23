@@ -1,0 +1,129 @@
+{
+  "_note": "Shared by the website and server/gamepass/worker.js. Prices and links are live Stripe objects in the PenGame Publishing, LLC account. To change a price, create a new price + Payment Link in Stripe and update the entry here.",
+  "pass": {
+    "title": "Games Pass",
+    "prices": [
+      "price_1Ue3YPFYqbWqjN88vsh8koaG",
+      "price_1Ue3YUFYqbWqjN88RLCgXOGX"
+    ]
+  },
+  "items": [
+    {
+      "id": "world-of-coasters",
+      "kind": "game",
+      "title": "World of Coasters",
+      "price": "$7.99",
+      "priceId": "price_1UepaTFYqbWqjN887fKvAPQR",
+      "checkoutUrl": "https://buy.stripe.com/28EaEXdlZ0Sz940gog4wM08",
+      "playUrl": "https://mrimagemakers.github.io/WorldofCoasters/"
+    },
+    {
+      "id": "cruising-usa",
+      "kind": "game",
+      "title": "Cruising USA",
+      "price": "$7.99",
+      "priceId": "price_1UepaVFYqbWqjN88Y16puD3L",
+      "checkoutUrl": "https://buy.stripe.com/00wfZh2Hl30Hgwsfkc4wM09",
+      "playUrl": "https://mrimagemakers.github.io/CrusingUSA/"
+    },
+    {
+      "id": "first-flight",
+      "kind": "game",
+      "title": "First Flight",
+      "price": "$7.99",
+      "priceId": "price_1UepaXFYqbWqjN88qfOLdsGp",
+      "checkoutUrl": "https://buy.stripe.com/fZu5kDbdR8l1fsodc44wM0a",
+      "playUrl": "https://mrimagemakers.github.io/FirstFlight/ar.html"
+    },
+    {
+      "id": "great-outdoors",
+      "kind": "game",
+      "title": "Great Outdoors Adventure",
+      "price": "$7.99",
+      "priceId": "price_1UepaYFYqbWqjN886PalCQ5G",
+      "checkoutUrl": "https://buy.stripe.com/9B614neq31WDa84dc44wM0b",
+      "playUrl": "https://mrimagemakers.github.io/GreatOutdoorsAdventure/"
+    },
+    {
+      "id": "ravenbrook",
+      "kind": "game",
+      "title": "Ravenbrook Manor",
+      "price": "$7.99",
+      "priceId": "price_1UepaaFYqbWqjN88510huiqv",
+      "checkoutUrl": "https://buy.stripe.com/14A5kDgyb30H0xueg84wM0c",
+      "playUrl": "https://mrimagemakers.github.io/RavenbrookManor/"
+    },
+    {
+      "id": "atl-nightclub-mogul",
+      "kind": "game",
+      "title": "ATL Nightclub Mogul",
+      "price": "$7.99",
+      "priceId": "price_1UepacFYqbWqjN88Gf0szkuW",
+      "checkoutUrl": "https://buy.stripe.com/6oU28r81FgRx1By4Fy4wM0d",
+      "playUrl": "https://mrimagemakers.github.io/ATLESCAPE/nightlife.html"
+    },
+    {
+      "id": "about-last-night",
+      "kind": "game",
+      "title": "About Last Night",
+      "price": "$7.99",
+      "priceId": "price_1UepaeFYqbWqjN88aGpxHf4M",
+      "checkoutUrl": "https://buy.stripe.com/cNi28r1Dh9p5gws0pi4wM0e",
+      "playUrl": "https://mrimagemakers.github.io/AboutLastNight/"
+    },
+    {
+      "id": "nias-world",
+      "kind": "game",
+      "title": "Nia’s Number Garden World",
+      "price": "$4.99",
+      "priceId": "price_1UepagFYqbWqjN88NT0BRwzd",
+      "checkoutUrl": "https://buy.stripe.com/14A4gz95JcBhcgc6NG4wM0f",
+      "playUrl": "https://mrimagemakers.github.io/NiasVRWorld/"
+    },
+    {
+      "id": "porch-war",
+      "kind": "game",
+      "title": "Porch War",
+      "price": "$4.99",
+      "priceId": "price_1UepaiFYqbWqjN88mAYQ23Dk",
+      "checkoutUrl": "https://buy.stripe.com/8x2fZhbdRfNtgws5JC4wM0g",
+      "playUrl": "https://mrimagemakers.github.io/PorchWar/"
+    },
+    {
+      "id": "hues-got-flow",
+      "kind": "game",
+      "title": "Hue’s Got Flow: The Coloring Odyssey",
+      "price": "$4.99",
+      "priceId": "price_1UepakFYqbWqjN88qx5kdTZ5",
+      "checkoutUrl": "https://buy.stripe.com/9B614ngyb9p55ROdc44wM0h",
+      "playUrl": "https://mrimagemakers.github.io/HuesColoringOdyssey/"
+    },
+    {
+      "id": "coloring-odyssey",
+      "kind": "game",
+      "title": "Coloring Odyssey",
+      "price": "$4.99",
+      "priceId": "price_1UepamFYqbWqjN88VNl3GTfQ",
+      "checkoutUrl": "https://buy.stripe.com/5kQ3cv6XBdFl2FC5JC4wM0i",
+      "playUrl": "https://mrimagemakers.github.io/Coloring-Odyssey/"
+    },
+    {
+      "id": "changing-the-channel",
+      "kind": "book",
+      "title": "Changing the Channel (AR/VR book)",
+      "price": "$14.99",
+      "priceId": "price_1UepT1FYqbWqjN88YvJSyblR",
+      "checkoutUrl": "https://buy.stripe.com/eVqbJ181FcBh0xu7RK4wM06",
+      "playUrl": "https://mrimagemakers.github.io/ChangingtheChannel/"
+    },
+    {
+      "id": "nia-number-garden",
+      "kind": "book",
+      "title": "Nia and the Number Garden (AR book)",
+      "price": "$9.99",
+      "priceId": "price_1UepT2FYqbWqjN88mqdFnDWo",
+      "checkoutUrl": "https://buy.stripe.com/28EfZh81F44L4NK1tm4wM07",
+      "playUrl": "https://mrimagemakers.github.io/NiaNumberGardenAR/"
+    }
+  ]
+}

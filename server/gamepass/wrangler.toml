@@ -4,7 +4,7 @@ compatibility_date = "2026-11-01"
 
 [vars]
 SITE_URL = "https://pengamepublishing.com"
-ALLOWED_ORIGINS = "https://pengamepublishing.com,https://www.pengamepublishing.com"
+ALLOWED_ORIGINS = "https://pengamepublishing.com,https://www.pengamepublishing.com,https://mrimagemakers.github.io"
 SALES_ENABLED = "false"
 GAME_CATALOG = "[]"
 

@@ -136,3 +136,14 @@ button.gp-card-link{width:100%;background:none;border-left:0;border-right:0;bord
 @media(max-width:1000px){.gp-hero-copy{max-width:580px}.gp-membership,.gp-free{grid-template-columns:1fr}.gp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.gp-hero{padding:55px 16px 60px;min-height:0}.gp h1{letter-spacing:-.03em}.gp-hero-banner{background:linear-gradient(0deg,#0a1730f0 0%,#0a1730cc 55%,#0a173080 100%),url(/game-art/game-pass-banner.webp) center top/cover no-repeat}.gp-scene{width:100%;opacity:.22;right:0}.gp-strip{flex-direction:column;gap:13px;padding-left:16px}.gp-grid,.gp-plans{grid-template-columns:1fr}.gp-section{padding:45px 16px}.gp-actions .gp-button{flex:1 1 100%}}
 @media(prefers-reduced-motion:reduce){.gp *{transition:none!important;scroll-behavior:auto!important}}
+
+/* /play sign-in page */
+.gp-play{max-width:760px;min-height:60vh}
+.gp-play h1{font-size:clamp(40px,5vw,64px)}
+.gp-play-form{margin:26px 0 12px}
+.gp-play-form label{display:block;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--muted)}
+.gp-play-form div{display:flex;gap:10px;flex-wrap:wrap}
+.gp-play-form input{flex:1 1 260px;min-height:50px;padding:0 16px;border-radius:8px;border:1px solid var(--line);background:var(--navy-2);color:var(--ink);font-size:16px}
+.gp-play-form input:focus{outline:3px solid var(--gold);outline-offset:2px}
+.gp-play-options{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:22px 0}
+.gp-play button.gp-card-link{background:none;border:0;cursor:pointer;padding:0}
