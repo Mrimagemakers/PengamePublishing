@@ -2,6 +2,11 @@ export const BOOKS = [
   // ── New / Featured ──────────────────────────────────────────────────────────
   {
     id: "changing-the-channel",
+    experienceUrl: "https://mrimagemakers.github.io/ChangingtheChannel/",
+    digitalPrice: "$14.99",
+    digitalPriceCents: 1499,
+    // Stripe Payment Link (PenGame Publishing, LLC). After payment, Stripe sends the buyer to experienceUrl.
+    digitalCheckoutUrl: "https://buy.stripe.com/eVqbJ181FcBh0xu7RK4wM06",
     title: "Changing the Channel: The 10 Golden Rules of Emotional Intelligence",
     series: "Leadership & Growth",
     description: "Emotional intelligence is no longer optional — it's a competitive advantage. This book explores how mastering your internal dialogue directly impacts leadership, decision-making, and long-term success.",
@@ -15,6 +20,11 @@ export const BOOKS = [
   // ── Bright Minds Explorers ───────────────────────────────────────────────────
   {
     id: "nia-number-garden",
+    experienceUrl: "https://mrimagemakers.github.io/NiaNumberGardenAR/",
+    digitalPrice: "$9.99",
+    digitalPriceCents: 999,
+    // Stripe Payment Link (PenGame Publishing, LLC). After payment, Stripe sends the buyer to experienceUrl.
+    digitalCheckoutUrl: "https://buy.stripe.com/28EfZh81F44L4NK1tm4wM07",
     title: "Nia and the Number Garden: Deluxe Edition",
     series: "Bright Minds Explorers",
     description: "An enchanting STEM-forward children's book. Nia follows a glowing butterfly into a magical Number Garden where glowing numbers float and math creatures talk.",
@@ -232,6 +242,7 @@ export const BOOKS = [
 
 export const CATEGORIES = [
   { id: "all", label: "All Books" },
+  { id: "ar-vr", label: "AR/VR Books · Game Pass" },
   { id: "children", label: "Bright Minds Explorers" },
   { id: "fiction", label: "Fiction" },
   { id: "self-help", label: "Self-Help & Leadership" },

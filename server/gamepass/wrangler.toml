@@ -4,9 +4,12 @@ compatibility_date = "2026-11-01"
 
 [vars]
 SITE_URL = "https://pengamepublishing.com"
-ALLOWED_ORIGINS = "https://pengamepublishing.com,https://www.pengamepublishing.com"
+ALLOWED_ORIGINS = "https://pengamepublishing.com,https://www.pengamepublishing.com,https://mrimagemakers.github.io"
 SALES_ENABLED = "false"
 GAME_CATALOG = "[]"
+# sign-in (public values; the Stripe key and GATE_SECRET are secrets, set with `wrangler secret put`)
+SUPABASE_URL = "https://isdikaghisuptqthlqqw.supabase.co"
+SUPABASE_ANON_KEY = "sb_publishable_Skg0BrZbf1Qdqp6pDDT8ag_-WHgN3S3"
 
 [[r2_buckets]]
 binding = "LEVELS"

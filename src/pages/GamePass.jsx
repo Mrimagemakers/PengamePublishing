@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Gamepad2, ArrowUpRight, LockKeyhole, Sparkles, ShieldCheck, Users } from 'lucide-react';
+import { Gamepad2, ArrowUpRight, LockKeyhole, ShieldCheck, Users } from 'lucide-react';
 import { GAMES } from '@/data/games';
 import { PASS_PLANS, CONTACT_EMAIL } from '@/data/gamePass';
 import GameCover from '@/components/games/GameCover';
@@ -8,10 +8,14 @@ import RatingBadge from '@/components/gamepass/RatingBadge';
 import { useAge } from '@/components/gamepass/AgeGate';
 import { access, isMinor } from '@/lib/ageRatings';
 import './gamepass.css';
+import PURCHASES from '@/data/purchases.json';
+import BookExperiences from '@/components/gamepass/BookExperiences';
+import GameTicket from '@/components/gamepass/GameTicket';
 const ArcadeScene = lazy(() => import('@/components/gamepass/ArcadeScene'));
 
 const art = (game) => `${import.meta.env.BASE_URL}${game.image.slice(1)}`;
 const platformsLabel = (game) => (game.platforms.includes('vr') ? 'BROWSER + VR' : 'BROWSER');
+const buyable = (game) => PURCHASES.items.find(i => i.id === game.id && i.kind === 'game');
 const contentLine = (game) => (game.descriptors?.length ? game.descriptors.join(' · ') : 'No content warnings');
 
 export default function GamePass() {
@@ -24,6 +28,7 @@ export default function GamePass() {
 
   return <div className="gp">
     <section className="gp-hero">
+      <div className="gp-hero-banner" aria-hidden="true" />
       <Suspense fallback={null}><ArcadeScene /></Suspense>
       <div className="gp-hero-copy"><p className="gp-eyebrow"><span /> PENGAME PUBLISHING • GAMES PASS</p>
         <h1>Great stories.<br />Epic worlds.<br /><em>One pass.</em></h1>
@@ -34,7 +39,7 @@ export default function GamePass() {
         </div>
         <p className="gp-small">Browser adventures · Immersive VR · Worlds beyond the page</p>
       </div>
-      <div className="gp-ticket"><Sparkles /><span>YOUR ALL-ACCESS ADVENTURE</span><strong>GAMES<br />PASS</strong><small>{passGames.length} WORLDS · ONE PASS</small></div>
+      <GameTicket worlds={passGames.length} />
     </section>
 
     <div className="gp-strip"><span>01 / PLAY {freeGame ? freeGame.title.toUpperCase() : 'OUR FREE GAME'} FREE</span><span>02 / PICK MONTHLY OR YEARLY</span><span>03 / PLAY EVERY WORLD</span></div>
@@ -63,16 +68,23 @@ export default function GamePass() {
           <p className="gp-card-meta"><span>{platformsLabel(game)}</span>{contentLine(game)}{game.online?.length ? <><br /><Users size={13} aria-hidden="true" /> Online features</> : null}</p>
           {access(game, meets).state === 'locked'
             ? <Link className="gp-card-link gp-locked" to="/game-safety#ratings">Locked for your age on this device <LockKeyhole size={16} aria-hidden="true" /></Link>
-            : <a className="gp-card-link" href="#membership" aria-label={`Unlock ${game.title} with the Games Pass`}>Unlock with the Games Pass <LockKeyhole size={16} aria-hidden="true" /></a>}
+            : <>
+              <a className="gp-card-link" href="#membership" aria-label={`Unlock ${game.title} with the Games Pass`}>Unlock with the Games Pass <LockKeyhole size={16} aria-hidden="true" /></a>
+              {buyable(game) && <a className="gp-card-link gp-quiet" href={buyable(game).checkoutUrl} aria-label={`Buy ${game.title} on its own for ${buyable(game).price}`}>Or buy this game for {buyable(game).price} <ArrowUpRight size={16} aria-hidden="true" /></a>}
+            </>}
         </div>
       </article>)}</div>
     </section>
+
+    <BookExperiences />
 
     <section className="gp-section gp-membership" id="membership">
       <div><p className="gp-eyebrow">LESS THAN A COFFEE. A WORLD OF PLAY.</p><h2>One pass.<br />Every world.</h2>
         <p className="gp-lead">Choose the pass that fits how you play.</p>
         <ul>
           <li>All {passGames.length} Games Pass worlds, plus new ones as they launch</li>
+          <li>Just want one? Most worlds can also be bought on their own, $4.99 to $7.99, yours to keep</li>
+          <li>AR/VR book companions for Changing the Channel and Nia and the Number Garden</li>
           <li>Play in your browser, VR headset, or phone AR where a game supports it</li>
           <li>Every world carries a PenGame age rating. <Link to="/game-safety">See ratings and parent info</Link></li>
           <li>Questions or cancellations: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>

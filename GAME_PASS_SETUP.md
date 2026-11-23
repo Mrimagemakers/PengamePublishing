@@ -1,6 +1,34 @@
 # PenGame Publishing Games Pass
 
-## How it works now (November 2026)
+## Sign-in gate and single-game sales (November 23, 2026)
+
+**What's built:**
+
+- **Single-game sales.** Every game on mrimagemakers.github.io except the free Queen of the Seas is sold on its own as a one-time purchase, and so are the two AR/VR books. They are live Stripe products and Payment Links in the PenGame Publishing, LLC account, all listed in `src/data/purchases.json`, the one list the site and the server share. Prices: $7.99 for World of Coasters, Cruising USA, First Flight, Great Outdoors Adventure, Ravenbrook Manor, ATL Nightclub Mogul and About Last Night; $4.99 for Nia's Number Garden World, Porch War, Hue's Got Flow and Coloring Odyssey; $14.99 for Changing the Channel and $9.99 for Nia and the Number Garden. After paying, Stripe sends the buyer to `/play?item=<id>`.
+- **`/play` page** (`src/pages/Play.jsx`). The player signs in with an emailed link (Supabase). The page asks the server for access, then sends them back into the game with a 24-hour play token. If they don't own the game, it offers "buy this game" or the Games Pass. While the gate is off, it simply opens the game.
+- **Server** (`server/gamepass/worker.js`). `GET /access?item=` checks Stripe by the player's verified email for an active Games Pass subscription or a paid one-time checkout of that item, and returns a signed token. `POST /verify` checks a token. `GET /status` reports whether it's configured. Tests: `node --test tests/*.test.mjs`.
+- **Gate script** (`public/pengame-gate.js`). Each game or book loads it with
+  `<script src="https://pengamepublishing.com/pengame-gate.js" data-item="<id>"></script>`.
+  It reads `gate-config.json` from the website. While the gate is off, it does nothing. When the gate is on, it covers the page until the player has a valid token. If the PenGame servers can't be reached, it opens the game rather than locking out paying players.
+- **This is a sign-in gate, not a full lock.** Game files are still public on GitHub Pages, so a determined, technical person could get around it. Refunds aren't checked: a refunded one-time purchase still counts as owned until it's revoked by hand.
+
+**To switch it on:**
+
+1. **Supabase.** Done: project `PenGamePublishingSite` (`https://isdikaghisuptqthlqqw.supabase.co`). Its URL and publishable key are already in `src/lib/gamepass.js` and `wrangler.toml`. Still to do in Supabase: under Authentication → URL Configuration, set Site URL to `https://pengamepublishing.com` and add `https://pengamepublishing.com/play*` to the redirect allow list.
+2. **Cloudflare Worker.** From `server/gamepass`, run `npx wrangler deploy`. Then set these secrets with `npx wrangler secret put <NAME>`:
+   - `STRIPE_SECRET_KEY`: a restricted key with read access to Customers, Subscriptions and Checkout Sessions is enough.
+   - `GATE_SECRET`: any long random string.
+   Then check that `https://<worker>/status` returns `{"ready":true}`.
+3. **GitHub.** In the PengamePublishing repo, go to Settings → Secrets and variables → Actions → Variables. Set `VITE_GAMEPASS_API_URL` (the Worker URL, no trailing slash) and `VITE_GATE_ENABLED=true`. Then re-run the Pages deploy.
+4. **Test it.** Buy one $4.99 game with your own email, sign in at `/play`, check that it opens, then refund yourself in Stripe.
+
+To switch it off again, set `VITE_GATE_ENABLED` to `false` and redeploy. Every game opens freely again.
+
+Games hosted elsewhere (Turn Up Music, StoryScape XR, Rap IQ City, and Ravenbrook in Horizon Worlds) can't be gated or sold individually this way.
+
+---
+
+## Earlier notes (November 2026)
 
 - `/game-pass` sells the Games Pass with two Stripe Payment Links: $4.99/month and $39.99/year (product "PenGame Games Pass"). The links live in `src/data/gamePass.js`.
 - There are no free first levels. One game is free: the entry in `src/data/games.js` marked `free: true` (Queen of the Seas). Every other title is listed as part of the pass and has no play link on the sales page.
@@ -42,3 +70,7 @@ Every entitlement read queries Stripe live, so cancellations, delinquency, and r
 Run `node --test tests/gamepass.test.mjs` and `npm run build`. In test mode verify: anonymous level 1; anonymous and expired accounts blocked on level 2; successful purchase and cross-device sign-in; direct asset requests blocked; monthly/annual price totals; decline, abandoned Checkout, duplicate clicks, renewal failure, cancellation, and portal changes. Keep SALES_ENABLED false until all pass. Then use live Stripe prices/key and set SALES_ENABLED true.
 
 GitHub Pages deploys only the frontend. Worker deployment, Stripe account setup, Supabase configuration, and individual game integrations are separate required steps. No DNS migration is included.
+
+## AR/VR Books catalog
+
+Changing the Channel and Nia and the Number Garden are listed under Books in Publications and in a dedicated Books section on both Game Pass pages. Their original print purchase links remain separate. Member launch buttons open ChangingtheChannel and NiaNumberGardenAR on GitHub Pages. This uses the existing unprotected library flow; it does not add subscription enforcement or make the public apps private.

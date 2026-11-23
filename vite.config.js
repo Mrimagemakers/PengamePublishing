@@ -22,12 +22,26 @@ function publishWebsiteImages() {
   }
 }
 
+// gate-config.json tells the sign-in gate in each game (public/pengame-gate.js) whether
+// sign-in is switched on and where the access server lives. Off unless VITE_GATE_ENABLED=true.
+function gateConfig() {
+  return {
+    name: 'gate-config',
+    apply: 'build',
+    generateBundle() {
+      const apiUrl = (process.env.VITE_GAMEPASS_API_URL || '').replace(/\/$/, '')
+      const enabled = process.env.VITE_GATE_ENABLED === 'true' && Boolean(apiUrl)
+      this.emitFile({ type: 'asset', fileName: 'gate-config.json', source: JSON.stringify({ enabled, apiUrl: enabled ? apiUrl : '' }) })
+    },
+  }
+}
+
 export default defineConfig({
   logLevel: 'error',
   // The site is served from the root of pengamepublishing.com (the github.io
   // address redirects there). A relative base breaks pages two levels deep,
   // such as /game-pass/library, because their assets load from the wrong folder.
   base: '/',
-  plugins: [react(), publishWebsiteImages()],
+  plugins: [react(), publishWebsiteImages(), gateConfig()],
   resolve: { alias: { '@': new URL('./src', import.meta.url).pathname } },
 })

@@ -1,4 +1,43 @@
 // Deploy separately from GitHub Pages. All Stripe credentials remain here.
+import PURCHASES from '../../src/data/purchases.json' with { type: 'json' };
+
+// ── Sign-in gate ────────────────────────────────────────────────────────────
+// A player signs in on pengamepublishing.com (Supabase email link). /access looks up,
+// by that verified email, whether they have an active Games Pass subscription or a paid
+// one-time purchase of the item, and if so returns a short-lived signed play token.
+// The gate script in each game (public/pengame-gate.js) checks that token with /verify.
+const TOKEN_HOURS = 24;
+const b64url = (bytes) => btoa(String.fromCharCode(...new Uint8Array(bytes))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+async function hmac(secret, text) {
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return b64url(await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(text)));
+}
+export async function signToken(secret, item, now = Date.now()) {
+  const exp = Math.floor(now / 1000) + TOKEN_HOURS * 3600;
+  return `${item}.${exp}.${await hmac(secret, `${item}.${exp}`)}`;
+}
+export async function checkToken(secret, item, token, now = Date.now()) {
+  if (typeof token !== 'string' || token.length > 300) return false;
+  const [tItem, tExp, sig] = token.split('.');
+  if (tItem !== item || !/^\d+$/.test(tExp || '') || Number(tExp) < Math.floor(now / 1000) || !sig) return false;
+  const expected = await hmac(secret, `${tItem}.${tExp}`);
+  if (expected.length !== sig.length) return false;
+  let diff = 0; for (let i = 0; i < sig.length; i++) diff |= expected.charCodeAt(i) ^ sig.charCodeAt(i);
+  return diff === 0;
+}
+export const itemById = (id) => PURCHASES.items.find(i => i.id === id);
+// Paid one-time purchases → item ids. Sessions come from Stripe's checkout session list.
+export function ownedItems(sessions) {
+  const owned = new Set();
+  for (const s of sessions) {
+    if (s.status !== 'complete' || s.payment_status !== 'paid') continue;
+    for (const line of s.line_items?.data || []) {
+      const item = PURCHASES.items.find(i => i.priceId === line.price?.id);
+      if (item) owned.add(item.id);
+    }
+  }
+  return [...owned];
+}
 export function entitled(subscriptions, prices) {
   return subscriptions.some(s => s.status === 'active' && s.items.data.some(i => prices.includes(i.price.id)));
 }
@@ -15,6 +54,41 @@ export default {
       if (origin && !allowed.includes(origin)) fail(403, 'Origin not allowed.');
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers });
       const url = new URL(request.url);
+      // ── Sign-in gate routes ──
+      const gateReady = Boolean(env.STRIPE_SECRET_KEY && env.SUPABASE_URL && env.SUPABASE_ANON_KEY && env.GATE_SECRET);
+      if (url.pathname === '/status' && request.method === 'GET') return json({ ready: gateReady });
+      if (url.pathname === '/verify' && request.method === 'POST') {
+        if (!gateReady) fail(503, 'Sign-in is being connected.');
+        const body = await request.json().catch(() => ({}));
+        if (!itemById(body.item)) fail(404, 'Unknown game or book.');
+        return json({ ok: await checkToken(env.GATE_SECRET, body.item, body.token) });
+      }
+      if (url.pathname === '/access' && request.method === 'GET') {
+        if (!gateReady) fail(503, 'Sign-in is being connected. Please check back soon.');
+        const auth = request.headers.get('Authorization');
+        if (!auth?.startsWith('Bearer ')) fail(401, 'Please sign in first.');
+        const who = await fetch(`${env.SUPABASE_URL}/auth/v1/user`, { headers: { Authorization: auth, apikey: env.SUPABASE_ANON_KEY } });
+        if (!who.ok) fail(401, 'Please sign in again.');
+        const player = await who.json();
+        if (!player.email || !player.email_confirmed_at) fail(401, 'Verify your email to continue.');
+        const email = String(player.email).toLowerCase();
+        const item = url.searchParams.get('item');
+        if (item && !itemById(item)) fail(404, 'Unknown game or book.');
+        const stripeGet = async (path) => {
+          const r = await fetch(`https://api.stripe.com/v1/${path}`, { headers: { Authorization: `Bearer ${env.STRIPE_SECRET_KEY}` } });
+          const v = await r.json(); if (!r.ok) fail(502, 'Billing service temporarily unavailable. Please try again.'); return v;
+        };
+        let pass = false;
+        const customers = (await stripeGet(`customers?email=${encodeURIComponent(email)}&limit=100`)).data;
+        for (const c of customers) {
+          const subs = await stripeGet(`subscriptions?customer=${c.id}&status=active&limit=100`);
+          if (entitled(subs.data, PURCHASES.pass.prices)) { pass = true; break; }
+        }
+        const sessions = (await stripeGet(`checkout/sessions?customer_details[email]=${encodeURIComponent(email)}&status=complete&limit=100&expand[]=data.line_items`)).data;
+        const owned = ownedItems(sessions);
+        const allowed = item ? (pass || owned.includes(item)) : undefined;
+        return json({ email, pass, owned, allowed, token: allowed ? await signToken(env.GATE_SECRET, item) : undefined });
+      }
       const catalog = JSON.parse(env.GAME_CATALOG || '[]');
       const configured = Boolean(env.STRIPE_SECRET_KEY && env.STRIPE_PRICE_MONTHLY && env.STRIPE_PRICE_ANNUAL && env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
       const salesEnabled = configured && env.SALES_ENABLED === 'true' && catalog.length > 0;

@@ -28,6 +28,7 @@ jobs:
           VITE_GAMEPASS_API_URL: ${{ vars.VITE_GAMEPASS_API_URL }}
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          VITE_GATE_ENABLED: ${{ vars.VITE_GATE_ENABLED }}
       - name: Support deep links on GitHub Pages
         run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5

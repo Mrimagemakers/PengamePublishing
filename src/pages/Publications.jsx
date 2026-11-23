@@ -8,7 +8,7 @@ export default function Publications() {
 
   const filteredBooks = activeCategory === "all"
     ? BOOKS
-    : BOOKS.filter(b => b.category === activeCategory);
+    : BOOKS.filter(b => activeCategory === "ar-vr" ? Boolean(b.experienceUrl) : b.category === activeCategory);
 
   return (
     <>
