@@ -46,7 +46,7 @@
     'html.tv *{scroll-margin:24px}' +
     'html.tv.pg-tv-scroll,html.tv.pg-tv-scroll body{overflow-y:auto!important;height:auto!important;min-height:100%}' +
     'html.tv dialog,html.tv [role=dialog]:not(body),html.tv [aria-modal=true]{max-height:calc(100vh - 2*var(--tvy))!important;overflow-y:auto!important;overscroll-behavior:contain}' +
-    '#pg-tv-toast{position:fixed;left:50%;bottom:calc(var(--tvy) + 12px);transform:translateX(-50%);z-index:2147483646;max-width:min(680px,calc(100vw - 2*var(--tvx)));' +
+    '#pg-tv-toast{position:fixed;left:50%;top:var(--tvy);transform:translateX(-50%);z-index:2147483646;max-width:min(680px,calc(100vw - 2*var(--tvx)));' +
     'padding:12px 18px;border-radius:14px;background:rgba(10,23,48,.94);border:1px solid #d9a53a;color:#f4f5ff;font:600 15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;' +
     'text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .4s;pointer-events:none}';
   (document.head || root).appendChild(css);
@@ -124,14 +124,17 @@
   }
   function hint() {
     try { if (localStorage.getItem('pg:tvHint')) return; localStorage.setItem('pg:tvHint', '1'); } catch (e) {}
-    toast('📺 Remote: arrows move the highlight, OK presses it. Back hands the arrows to the game; press Back again for the menu.', 8000);
+    toast(gameOn() ? '📺 Remote: arrows move the highlight, OK presses it. Back hands the arrows to the game; press Back again for the menu.'
+      : '📺 Remote: arrows move the highlight, OK presses it, Back goes back.', 6000);
   }
 
   function back(e) {
     var d = document.querySelectorAll('dialog[open]');
     if (d.length && e.key !== 'Escape') { try { d[d.length - 1].close(); } catch (er) {} setTimeout(function () { go(first()); }, 60); return true; }
     if (isUI(document.activeElement) && gameOn()) { rest(); return true; }      // arrows back to the game
-    if (e.key === 'Escape') return false;                                          // a real Escape key: let the game have it
+    if (e.key === 'Escape') return false;                                          // a real Escape key: let the page have it
+    var modal = scope() !== document.body;
+    if (!modal && !gameOn()) { if (history.length > 1) { history.back(); return true; } return false; } // a web page: Back goes back
     // TV Back key: send the game an Escape (its pause menu), then highlight whatever menu that shows
     try { var t = document.activeElement && document.activeElement !== document.body ? document.activeElement : (document.querySelector('canvas') || document.body);
       ['keydown', 'keyup'].forEach(function (type) { t.dispatchEvent(new KeyboardEvent(type, { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true })); }); } catch (er) {}
