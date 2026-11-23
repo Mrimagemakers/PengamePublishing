@@ -42,3 +42,7 @@ Every entitlement read queries Stripe live, so cancellations, delinquency, and r
 Run `node --test tests/gamepass.test.mjs` and `npm run build`. In test mode verify: anonymous level 1; anonymous and expired accounts blocked on level 2; successful purchase and cross-device sign-in; direct asset requests blocked; monthly/annual price totals; decline, abandoned Checkout, duplicate clicks, renewal failure, cancellation, and portal changes. Keep SALES_ENABLED false until all pass. Then use live Stripe prices/key and set SALES_ENABLED true.
 
 GitHub Pages deploys only the frontend. Worker deployment, Stripe account setup, Supabase configuration, and individual game integrations are separate required steps. No DNS migration is included.
+
+## AR/VR Books catalog
+
+Changing the Channel and Nia and the Number Garden are listed under Books in Publications and in a dedicated Books section on both Game Pass pages. Their original print purchase links remain separate. Member launch buttons open ChangingtheChannel and NiaNumberGardenAR on GitHub Pages. This uses the existing unprotected library flow; it does not add subscription enforcement or make the public apps private.

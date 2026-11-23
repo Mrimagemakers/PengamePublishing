@@ -8,6 +8,7 @@ import RatingBadge from '@/components/gamepass/RatingBadge';
 import { useAge } from '@/components/gamepass/AgeGate';
 import { access, isMinor } from '@/lib/ageRatings';
 import './gamepass.css';
+import BookExperiences from '@/components/gamepass/BookExperiences';
 const ArcadeScene = lazy(() => import('@/components/gamepass/ArcadeScene'));
 
 const art = (game) => `${import.meta.env.BASE_URL}${game.image.slice(1)}`;
@@ -68,11 +69,14 @@ export default function GamePass() {
       </article>)}</div>
     </section>
 
+    <BookExperiences />
+
     <section className="gp-section gp-membership" id="membership">
       <div><p className="gp-eyebrow">LESS THAN A COFFEE. A WORLD OF PLAY.</p><h2>One pass.<br />Every world.</h2>
         <p className="gp-lead">Choose the pass that fits how you play.</p>
         <ul>
           <li>All {passGames.length} Games Pass worlds, plus new ones as they launch</li>
+          <li>AR/VR book companions for Changing the Channel and Nia and the Number Garden</li>
           <li>Play in your browser, VR headset, or phone AR where a game supports it</li>
           <li>Every world carries a PenGame age rating. <Link to="/game-safety">See ratings and parent info</Link></li>
           <li>Questions or cancellations: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>

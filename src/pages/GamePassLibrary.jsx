@@ -8,6 +8,7 @@ import RatingBadge from '@/components/gamepass/RatingBadge';
 import { useAge } from '@/components/gamepass/AgeGate';
 import { access, OWN_HOSTS } from '@/lib/ageRatings';
 import './gamepass.css';
+import BookExperiences from '@/components/gamepass/BookExperiences';
 
 const ownLink = (url) => { try { const h = new URL(url).hostname; return OWN_HOSTS.some(o => h === o || h.endsWith('.' + o)); } catch { return false; } };
 
@@ -38,6 +39,7 @@ export default function GamePassLibrary() {
         : 'Teen mode is on for this device. Worlds rated 17+ and 18+ are locked, and games are asked to switch off chat, sign-ups and purchases.'} <Link to="/game-safety#parents">How it works</Link></p>}
       <p className="gp-small">Need help with your membership? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. <Link to="/game-safety">Ratings, safety and children’s privacy</Link>.</p>
     </section>
+    <BookExperiences member />
     <section className="gp-section">
       <div className="gp-grid">{games.map(game => {
         const locked = access(game, meets).state === 'locked';

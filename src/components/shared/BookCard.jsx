@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Clock, Mail } from "lucide-react";
@@ -75,6 +76,12 @@ export default function BookCard({ book, index = 0 }) {
         <p className="font-body text-sm text-muted-foreground line-clamp-3 mb-4 leading-relaxed">
           {book.description}
         </p>
+
+        {book.experienceUrl && <div className="mb-4 rounded-lg bg-primary/5 p-3">
+          <p className="text-xs font-semibold mb-2">AR/VR book experience · Included in Game Pass</p>
+          <p className="text-sm mb-2">Digital AR/VR access: {book.digitalPrice} one-time. Individual checkout coming soon.</p>
+          <Link className="text-sm font-semibold text-primary underline" to={`/game-pass#book-${book.id}`}>Explore with Game Pass</Link>
+        </div>}
 
         {book.price && (
           <p className="font-heading text-xl font-bold text-primary mb-4">{book.price}</p>
