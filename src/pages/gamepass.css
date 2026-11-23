@@ -2,7 +2,7 @@
 .gp{--navy:#0A1730;--navy-2:#0f2142;--navy-3:#162b52;--line:#22365d;--gold:#F2D27A;--gold-deep:#D9A53A;--gold-soft:#f7e2a6;--ink:#f4f5ff;--muted:#b4c0d8;background:var(--navy);color:var(--ink);font-family:var(--font-body)}
 .gp a,.gp button{transition:background .2s,transform .2s,border-color .2s}
 .gp a:focus-visible,.gp button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
-.gp h1,.gp h2,.gp h3,.gp-ticket strong,.gp-price{font-family:var(--font-heading)}
+.gp h1,.gp h2,.gp h3,.gp-price{font-family:var(--font-heading)}
 
 .gp-hero{position:relative;overflow:hidden;min-height:660px;padding:90px max(6vw,24px);background:radial-gradient(ellipse at 80% 40%,#1d3566,transparent 65%)}
 .gp-scene{position:absolute;right:-5%;top:0;width:65%;height:100%;opacity:.75;pointer-events:none}
@@ -20,9 +20,9 @@
 .gp-small{font-size:12px;color:#a2b0cc;margin-top:23px;line-height:1.7}
 .gp-small a,.gp-membership ul a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 
-.gp-ticket{position:absolute;top:24%;right:12%;z-index:1;width:240px;padding:28px;background:linear-gradient(135deg,#1f3a6edd,#0a1730dd);border:1px solid var(--gold-deep);border-radius:20px;transform:rotate(11deg);box-shadow:0 30px 100px #0008;backdrop-filter:blur(12px);color:var(--gold)}
-.gp-ticket span,.gp-ticket small{display:block;font-size:9px;letter-spacing:2px;margin-top:22px;color:var(--ink)}
-.gp-ticket strong{display:block;font-size:56px;font-weight:800;line-height:1;letter-spacing:-.04em;margin-top:25px;color:var(--gold)}
+.gp-banner{position:absolute;top:50%;right:max(6vw,24px);z-index:1;width:min(40vw,600px);margin:0;transform:translateY(-50%) rotate(-2deg);animation:gp-float 7s ease-in-out infinite}
+.gp-banner img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--gold-deep);box-shadow:0 30px 90px #000a,0 0 0 6px #0a173088}
+@keyframes gp-float{0%,100%{transform:translateY(-50%) rotate(-2deg)}50%{transform:translateY(calc(-50% - 10px)) rotate(-1.2deg)}}
 
 .gp-strip{display:flex;justify-content:space-around;gap:20px;padding:24px;border-block:1px solid var(--line);font-size:10px;font-weight:bold;letter-spacing:2px;color:#c2ccdf}
 .gp-section{max-width:1440px;margin:auto;padding:75px max(5vw,24px)}
@@ -133,6 +133,7 @@ button.gp-card-link{width:100%;background:none;border-left:0;border-right:0;bord
 @media(max-width:1000px){.gp-tiers{grid-template-columns:repeat(2,minmax(0,1fr))}.gp-rating-table{grid-template-columns:1fr}}
 @media(max-width:650px){.gp-tiers{grid-template-columns:1fr}.gp-dob{grid-template-columns:1fr 1fr}.gp-dob label:first-child{grid-column:1/-1}}
 
-@media(max-width:1000px){.gp-ticket{right:5%;width:180px;opacity:.6}.gp-ticket strong{font-size:42px}.gp-hero-copy{max-width:580px}.gp-membership,.gp-free{grid-template-columns:1fr}.gp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.gp-hero{padding:55px 16px 60px;min-height:0}.gp h1{letter-spacing:-.03em}.gp-ticket{display:none}.gp-scene{width:100%;opacity:.22;right:0}.gp-strip{flex-direction:column;gap:13px;padding-left:16px}.gp-grid,.gp-plans{grid-template-columns:1fr}.gp-section{padding:45px 16px}.gp-actions .gp-button{flex:1 1 100%}}
-@media(prefers-reduced-motion:reduce){.gp *{transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:1180px){.gp-banner{position:relative;top:auto;right:auto;width:min(100%,720px);margin:44px 0 0;transform:none;animation:none}.gp-hero{min-height:0}}
+@media(max-width:1000px){.gp-hero-copy{max-width:580px}.gp-membership,.gp-free{grid-template-columns:1fr}.gp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.gp-hero{padding:55px 16px 60px;min-height:0}.gp h1{letter-spacing:-.03em}.gp-banner{margin-top:32px}.gp-scene{width:100%;opacity:.22;right:0}.gp-strip{flex-direction:column;gap:13px;padding-left:16px}.gp-grid,.gp-plans{grid-template-columns:1fr}.gp-section{padding:45px 16px}.gp-actions .gp-button{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){.gp-banner{animation:none}.gp *{transition:none!important;scroll-behavior:auto!important}}
